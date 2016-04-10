@@ -29,4 +29,6 @@ class moduloTarea1Widget:
       self.parent.show()
 
   def setup(self):
-    print "Estoy en el moduloTarea1"
+    path='C:\Users\Camilo_Q\Documents\MEGA\Trabajo_de_grado\moduloTarea1/Tornillo_1.STL'
+    slicer.util.loadModel(path)
+    print "Tornillo cargado"
