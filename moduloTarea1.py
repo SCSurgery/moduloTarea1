@@ -31,6 +31,8 @@ class moduloTarea1Widget:
   def setup(self):
     path='C:\Users\Camilo_Q\Documents\MEGA\Trabajo_de_grado\moduloTarea1/Tornillo_1.STL' #Se obtiene direccion de la unbicación del tornillo
     slicer.util.loadModel(path) #Se carga el tornillo al espacio 3d
-    
-   
-    
+    tornillo1=slicer.util.getNode('Tornillo_1')
+    transformada=slicer.vtkMRMLLinearTransformNode()
+    transformada.SetName('Transformada')
+    slicer.mrmlScene.AddNode(transformada)
+    tornillo1.SetAndObserveTransformNodeID(transformada.GetID())
