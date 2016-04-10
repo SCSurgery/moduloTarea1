@@ -6,12 +6,12 @@ class moduloTarea1():
     parent.title = "Tarea 1"
     parent.categories = ["Tareas"]
     parent.dependencies = []
-    parent.contributors = ["Camilo Quiceno Q"] # replace with "Firstname Lastname (Org)"
+    parent.contributors = ["Camilo Quiceno Q y Nicolas Buitrago Roldan"] # replace with "Firstname Lastname (Org)"
     parent.helpText = """
-    Este modulo sirve para cambiar el layout del slicer
+    Aprender a mover el tornillo en el espacio
     """
     parent.acknowledgementText = """
-    Desarrollado por Camilo Quiceno 
+    Desarrollado por Camilo Quiceno Y Nicolas Buitrago
     """ # replace with organization, grant and thanks.
     self.parent = parent
 
@@ -29,6 +29,8 @@ class moduloTarea1Widget:
       self.parent.show()
 
   def setup(self):
-    path='C:\Users\Camilo_Q\Documents\MEGA\Trabajo_de_grado\moduloTarea1/Tornillo_1.STL'
-    slicer.util.loadModel(path)
-    print "Tornillo cargado"
+    path='C:\Users\Camilo_Q\Documents\MEGA\Trabajo_de_grado\moduloTarea1/Tornillo_1.STL' #Se obtiene direccion de la unbicación del tornillo
+    slicer.util.loadModel(path) #Se carga el tornillo al espacio 3d
+    
+   
+    
