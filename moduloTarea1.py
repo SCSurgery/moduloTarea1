@@ -66,6 +66,23 @@ class moduloTarea1Widget:
 
 #-----------------------------------------------------------------------------------------------
 
+    sample1FormLayout = qt.QFormLayout(sample1CollapsibleButton) #Se anada QformLayout al boton colapsable
+
+    groupBoxTraslation = qt.QGroupBox() #Se crea un group box dentro del boton colapsable
+    groupBoxTraslation.setTitle( 'Traslacion' ) #Se anade nombre al groupBox
+    sample1FormLayout.addWidget(groupBoxTraslation) #Se añade el groupbox al layout del boton
+    
+    groupBoxTraslationLayout = qt.QFormLayout( groupBoxTraslation ) #Se crea formLayout al groupLayout
+    labelEjex = qt.QLabel("Traslacion eje x: ") #Se crea label
+    groupBoxTraslationLayout.layout().addWidget(labelEjex) #Se añade label al layout
+    self.barraTranslacionX = qt.QSlider(1) #Se crea un slicer 
+    self.barraTranslacionX.setMinimum(-200) #Minimo del slider -200
+    self.barraTranslacionX.setMaximum(200) #Maximo de slider 200
+    groupBoxTraslationLayout.layout().addWidget(self.barraTranslacionX) #Se añade slicer al layout
+    self.barraTranslacionX.valueChanged.connect(self.onMoveTraslacionX) #Se crea metodo para saber cuando se mueve el slider
+
+
+#---------------------------------------------------------------------------------------------------
   def onApply(self): 
 
       print "Cargaste tornillo 1"
@@ -77,7 +94,6 @@ class moduloTarea1Widget:
       transformada.SetName('Transformada Tornillo 1') #Se asigna nombre a la transformada
       slicer.mrmlScene.AddNode(transformada) #
       tornillo1.SetAndObserveTransformNodeID(transformada.GetID()) # Se relaciona la trnasformada con el objeto tornillo
-      numeroTornillo=1
 
   def onApply2(self): 
 
@@ -91,11 +107,12 @@ class moduloTarea1Widget:
       slicer.mrmlScene.AddNode(transformada2) #
       tornillo2.SetAndObserveTransformNodeID(transformada2.GetID()) # Se relaciona la trnasformada con el objeto tornillo
       
-      matriztornillo2 = vtk.vtkMatrix4x4()
-      transformada2.GetMatrixTransformToParent(matriztornillo2)
-      matriztornillo2.SetElement(0,3,5)
-      transformada2.SetAndObserveMatrixTransformToParent(matriztornillo2)
+      matriztornillo2 = vtk.vtkMatrix4x4() #Se crea matriz 4x4 para el tornillo 2
+      transformada2.GetMatrixTransformToParent(matriztornillo2) # a la matriz de tornillo 2 se toma como padre la matriz de movimiento
+      matriztornillo2.SetElement(0,3,5) #Se modifica la matriz del tornillo
+      transformada2.SetAndObserveMatrixTransformToParent(matriztornillo2) # Se añade la matriz del tornillo modificada a la matriz padre de movimientos
 
-   
+  def onMoveTraslacionX(self):
+    print "Trasladando en x"
 
   
