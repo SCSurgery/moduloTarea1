@@ -78,7 +78,7 @@ class moduloTarea1Widget:
     groupBoxTraslationLayoutContenedor1.setLayout(qt.QHBoxLayout())
     groupBoxTraslationLayout.layout().addWidget(groupBoxTraslationLayoutContenedor1)
 
-    labelEjex = qt.QLabel("Traslacion eje X: ") #Se crea label
+    labelEjex = qt.QLabel("Traslacion eje RL: ") #Se crea label
     groupBoxTraslationLayoutContenedor1.layout().addWidget(labelEjex) #Se añade label al layout
 
     self.barraTranslacionX = qt.QSlider(1) #Se crea un slicer 
@@ -143,11 +143,7 @@ class moduloTarea1Widget:
 
       path='C:\Users\Camilo_Q\Documents\MEGA\Trabajo_de_grado\moduloTarea1/Tornillo_1.STL' #Se obtiene direccion de la unbicación del tornillo
       slicer.util.loadModel(path) #Se carga el tornillo al espacio 3d
-      tornillo1=slicer.util.getNode('Tornillo_1') #Se obtiene la informacion del tonillo cargado
-      transformada=slicer.vtkMRMLLinearTransformNode() #Se crea una transformada lineal
-      transformada.SetName('Transformada Tornillo 1') #Se asigna nombre a la transformada
-      slicer.mrmlScene.AddNode(transformada) #
-      tornillo1.SetAndObserveTransformNodeID(transformada.GetID()) # Se relaciona la trnasformada con el objeto tornillo
+
 
   def onApply2(self): 
 
@@ -167,7 +163,18 @@ class moduloTarea1Widget:
       transformada2.SetAndObserveMatrixTransformToParent(matriztornillo2) # Se añade la matriz del tornillo modificada a la matriz padre de movimientos
 
   def onMoveTraslacionX(self):
-    print "Trasladando en x"
+    
+    tornillo1=slicer.util.getNode('Tornillo_1') #Se obtiene la informacion del tonillo cargado
+    transformada=slicer.vtkMRMLLinearTransformNode() #Se crea una transformada lineal
+    transformada.SetName('Transformada Tornillo 1') #Se asigna nombre a la transformada
+    slicer.mrmlScene.AddNode(transformada) #
+    tornillo1.SetAndObserveTransformNodeID(transformada.GetID())
+    matriztornillo1 = vtk.vtkMatrix4x4()
+    valorTrasladoSlidex=self.barraTranslacionX.value
+
+    transformada.GetMatrixTransformToParent(matriztornillo1)
+    matriztornillo1.SetElement(0,3,valorTrasladoSlidex)
+    transformada.SetAndObserveMatrixTransformToParent(matriztornillo1)
 
   def onMoveTraslacionY(self):
     print "Trasladando en Y"
