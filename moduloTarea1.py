@@ -45,14 +45,14 @@ class moduloTarea1Widget:
 
     sampleCollapsibleButton = ctk.ctkCollapsibleButton() #Se crea boton colapsable
     sampleCollapsibleButton.text = "Creacion de tornillos" #Se asigna label del boton colapsable
-    sampleCollapsibleButton.collapsed = True #Aparecen sin colapsar
+    sampleCollapsibleButton.collapsed = False #Aparecen sin colapsar
     self.layout.addWidget(sampleCollapsibleButton) #Se crea layout dentro del boton colapsable
 
 #-------------------------------------------------------------------------------------------------
 
     sample1CollapsibleButton = ctk.ctkCollapsibleButton()  #Se crea boton colapsable
     sample1CollapsibleButton.text = "Movimiento de tornillo" #Se asigna label del boton colapsable
-    sample1CollapsibleButton.collapsed = True #Aparecen sin colapsar
+    sample1CollapsibleButton.collapsed = False #Aparecen sin colapsar
     self.layout.addWidget(sample1CollapsibleButton) #Se crea layout dentro del boton colapsable
 
 #------------------------------------------------------------------------------------------------
@@ -171,13 +171,55 @@ class moduloTarea1Widget:
     self.barraRotacionX.valueChanged.connect(self.onMoveRotacionX) #Se crea metodo para saber cuando se mueve el slider
 
     self.spinBoxRotacionX= qt.QSpinBox() #Se crea Qspinbox
-    self.spinBoxRotacionX.setSuffix(".00mm")
-    self.spinBoxRotacionX.setMinimum(-200)
-    self.spinBoxRotacionX.setMaximum(200)
+    self.spinBoxRotacionX.setSuffix(" Grados")
+    self.spinBoxRotacionX.setMinimum(0)
+    self.spinBoxRotacionX.setMaximum(360)
 
     groupBoxRotationLayoutContenedor1.layout().addWidget(self.spinBoxRotacionX)
     self.spinBoxRotacionX.valueChanged.connect(self.onMoveRotacionXspinBox)
+#---------------------------------------------------------------------------------------------------
+    groupBoxRotationLayoutContenedor2 = qt.QFrame(sample1CollapsibleButton)
+    groupBoxRotationLayoutContenedor2.setLayout(qt.QHBoxLayout())
+    groupBoxRotationLayout.layout().addWidget(groupBoxRotationLayoutContenedor2)
 
+    labelRotationEjey = qt.QLabel("Rotacion Eje y ") #Se crea label
+    groupBoxRotationLayoutContenedor2.layout().addWidget(labelRotationEjey) #Se añade label al layout
+
+    self.barraRotacionY = qt.QSlider(1) #Se crea un slicer 
+    self.barraRotacionY.setMinimum(0) #Minimo del slider -200
+    self.barraRotacionY.setMaximum(360) #Maximo de slider 200
+    groupBoxRotationLayoutContenedor2.layout().addWidget(self.barraRotacionY) #Se añade slicer al layout
+    self.barraRotacionY.valueChanged.connect(self.onMoveRotacionY) #Se crea metodo para saber cuando se mueve el slider
+
+    self.spinBoxRotacionY= qt.QSpinBox() #Se crea Qspinbox
+    self.spinBoxRotacionY.setSuffix(" Grados")
+    self.spinBoxRotacionY.setMinimum(0)
+    self.spinBoxRotacionY.setMaximum(360)
+
+    groupBoxRotationLayoutContenedor2.layout().addWidget(self.spinBoxRotacionY)
+    self.spinBoxRotacionY.valueChanged.connect(self.onMoveRotacionYspinBox)
+#--------------------------------------------------------------------------------
+    groupBoxRotationLayoutContenedor3 = qt.QFrame(sample1CollapsibleButton)
+    groupBoxRotationLayoutContenedor3.setLayout(qt.QHBoxLayout())
+    groupBoxRotationLayout.layout().addWidget(groupBoxRotationLayoutContenedor3)
+
+    labelRotationEjez = qt.QLabel("Rotacion Eje z ") #Se crea label
+    groupBoxRotationLayoutContenedor3.layout().addWidget(labelRotationEjez) #Se añade label al layout
+
+    self.barraRotacionZ = qt.QSlider(1) #Se crea un slicer 
+    self.barraRotacionZ.setMinimum(0) #Minimo del slider -200
+    self.barraRotacionZ.setMaximum(360) #Maximo de slider 200
+    groupBoxRotationLayoutContenedor3.layout().addWidget(self.barraRotacionZ) #Se añade slicer al layout
+    self.barraRotacionZ.valueChanged.connect(self.onMoveRotacionZ) #Se crea metodo para saber cuando se mueve el slider
+
+    self.spinBoxRotacionZ= qt.QSpinBox() #Se crea Qspinbox
+    self.spinBoxRotacionZ.setSuffix(" Grados")
+    self.spinBoxRotacionZ.setMinimum(0)
+    self.spinBoxRotacionZ.setMaximum(360)
+
+    groupBoxRotationLayoutContenedor3.layout().addWidget(self.spinBoxRotacionZ)
+    self.spinBoxRotacionZ.valueChanged.connect(self.onMoveRotacionZspinBox)
+#--------------------------------------------------------------------------------
 
 #---------------------------------------------------------------------------------------------------
   def onApply(self): 
@@ -312,7 +354,25 @@ class moduloTarea1Widget:
       self.transformada2.SetAndObserveMatrixTransformToParent(self.matriztornillo2)
 
   def onMoveRotacionX(self):
-    print "Rotacion x slide"
+    valorRotacionSlidex=self.barraRotacionX.value  #Se obtiene el valor del slide modificado
+    self.spinBoxRotacionX.setValue(valorRotacionSlidex)
 
   def onMoveRotacionXspinBox(self):
-    print "Rotacion x spin"
+    valorTrasladoSlidex=self.spinBoxRotacionX.value
+    self.barraRotacionX.setValue(valorTrasladoSlidex)
+
+  def onMoveRotacionY(self):
+    valorRotacionSlidey=self.barraRotacionY.value  #Se obtiene el valor del slide modificado
+    self.spinBoxRotacionY.setValue(valorRotacionSlidey)
+
+  def onMoveRotacionYspinBox(self):
+    valorTrasladoSlidey=self.spinBoxRotacionY.value
+    self.barraRotacionY.setValue(valorTrasladoSlidey)
+
+  def onMoveRotacionZ(self):
+    valorRotacionSlidez=self.barraRotacionZ.value  #Se obtiene el valor del slide modificado
+    self.spinBoxRotacionZ.setValue(valorRotacionSlidez)
+
+  def onMoveRotacionZspinBox(self):
+    valorTrasladoSlidez=self.spinBoxRotacionZ.value
+    self.barraRotacionZ.setValue(valorTrasladoSlidez)
