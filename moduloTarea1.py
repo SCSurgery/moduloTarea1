@@ -150,6 +150,34 @@ class moduloTarea1Widget:
     self.spinBoxTraslacionZ.setMaximum(200)
     groupBoxTraslationLayoutContenedor3.layout().addWidget(self.spinBoxTraslacionZ)
     self.spinBoxTraslacionZ.valueChanged.connect(self.onMoveTraslacionZspinBox)
+#---------------------------------------------------------------------------------------------------
+    groupBoxRotation = qt.QGroupBox() #Se crea un group box dentro del boton colapsable
+    groupBoxRotation.setTitle( 'Rotacion' ) #Se anade nombre al groupBox
+    sample1FormLayout.addWidget(groupBoxRotation)
+
+    groupBoxRotationLayout = qt.QFormLayout( groupBoxRotation ) #Se crea formLayout al groupLayout
+  
+    groupBoxRotationLayoutContenedor1 = qt.QFrame(sample1CollapsibleButton)
+    groupBoxRotationLayoutContenedor1.setLayout(qt.QHBoxLayout())
+    groupBoxRotationLayout.layout().addWidget(groupBoxRotationLayoutContenedor1)
+
+    labelRotationEjex = qt.QLabel("Rotacion Eje x ") #Se crea label
+    groupBoxRotationLayoutContenedor1.layout().addWidget(labelRotationEjex) #Se añade label al layout
+
+    self.barraRotacionX = qt.QSlider(1) #Se crea un slicer 
+    self.barraRotacionX.setMinimum(0) #Minimo del slider -200
+    self.barraRotacionX.setMaximum(360) #Maximo de slider 200
+    groupBoxRotationLayoutContenedor1.layout().addWidget(self.barraRotacionX) #Se añade slicer al layout
+    self.barraRotacionX.valueChanged.connect(self.onMoveRotacionX) #Se crea metodo para saber cuando se mueve el slider
+
+    self.spinBoxRotacionX= qt.QSpinBox() #Se crea Qspinbox
+    self.spinBoxRotacionX.setSuffix(".00mm")
+    self.spinBoxRotacionX.setMinimum(-200)
+    self.spinBoxRotacionX.setMaximum(200)
+
+    groupBoxRotationLayoutContenedor1.layout().addWidget(self.spinBoxRotacionX)
+    self.spinBoxRotacionX.valueChanged.connect(self.onMoveRotacionXspinBox)
+
 
 #---------------------------------------------------------------------------------------------------
   def onApply(self): 
@@ -283,3 +311,8 @@ class moduloTarea1Widget:
       self.matriztornillo2.SetElement(2,3,valorTrasladoSlidez)  #Se modifica la matriz del tornillo
       self.transformada2.SetAndObserveMatrixTransformToParent(self.matriztornillo2)
 
+  def onMoveRotacionX(self):
+    print "Rotacion x slide"
+
+  def onMoveRotacionXspinBox(self):
+    print "Rotacion x spin"
