@@ -80,6 +80,7 @@ class moduloTarea1Widget:
     self.comboBoxSeleccionTornillo.addItem("Tornillo 1") #Se añade opciones
     self.comboBoxSeleccionTornillo.addItem("Tornillo 2")
     sample1FormLayout.addWidget(self.comboBoxSeleccionTornillo) #Se añade al layout
+    self.comboBoxSeleccionTornillo.currentIndexChanged.connect(self.onMoveComboBox)
    
     groupBoxTraslation = qt.QGroupBox() #Se crea un group box dentro del boton colapsable
     groupBoxTraslation.setTitle( 'Traslacion' ) #Se anade nombre al groupBox
@@ -376,3 +377,31 @@ class moduloTarea1Widget:
   def onMoveRotacionZspinBox(self):
     valorTrasladoSlidez=self.spinBoxRotacionZ.value
     self.barraRotacionZ.setValue(valorTrasladoSlidez)
+
+  def onMoveComboBox(self):
+    if self.comboBoxSeleccionTornillo.currentIndex == 1:
+      print "Actualiza matriz del tornillo 2"
+      self.transformada2.GetMatrixTransformToParent(self.matriztornillo2)  #Se toma la matriz padre de movimiento
+      x=self.matriztornillo2.GetElement(0,3) #Se toman los valores actuales de la matriz
+      y=self.matriztornillo2.GetElement(1,3)
+      z=self.matriztornillo2.GetElement(2,3)
+
+      self.barraTranslacionX.setValue(x) # Se actualizan los slides y spins al valor de la matriz
+      self.spinBoxTraslacionX.setValue(x)
+      self.barraTranslacionY.setValue(y)
+      self.spinBoxTraslacionY.setValue(y)
+      self.barraTranslacionZ.setValue(z)
+      self.spinBoxTraslacionZ.setValue(z)
+
+    else:
+      self.transformada.GetMatrixTransformToParent(self.matriztornillo1)  #Se toma la matriz padre de movimiento
+      x=self.matriztornillo1.GetElement(0,3)  #Se toman los valores actuales de la matriz
+      y=self.matriztornillo1.GetElement(1,3)
+      z=self.matriztornillo1.GetElement(2,3)
+
+      self.barraTranslacionX.setValue(x) # Se actualizan los slides y spins al valor de la matriz
+      self.spinBoxTraslacionX.setValue(x)
+      self.barraTranslacionY.setValue(y)
+      self.spinBoxTraslacionY.setValue(y)
+      self.barraTranslacionZ.setValue(z)
+      self.spinBoxTraslacionZ.setValue(z)
