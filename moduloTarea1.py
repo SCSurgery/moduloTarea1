@@ -99,7 +99,7 @@ class moduloTarea1Widget:
     groupBoxTraslationLayoutContenedor2.setLayout(qt.QHBoxLayout())
     groupBoxTraslationLayout.layout().addWidget(groupBoxTraslationLayoutContenedor2)
 
-    labelEjey = qt.QLabel("Traslacion eje Y: ") #Se crea label
+    labelEjey = qt.QLabel("Traslacion eje PA: ") #Se crea label
     groupBoxTraslationLayoutContenedor2.layout().addWidget(labelEjey) #Se añade label al layout
 
     self.barraTranslacionY = qt.QSlider(1) #Se crea un slicer 
@@ -120,7 +120,7 @@ class moduloTarea1Widget:
     groupBoxTraslationLayoutContenedor3.setLayout(qt.QHBoxLayout())
     groupBoxTraslationLayout.layout().addWidget(groupBoxTraslationLayoutContenedor3)
 
-    labelEjeZ = qt.QLabel("Traslacion eje Z: ") #Se crea label
+    labelEjeZ = qt.QLabel("Traslacion eje SI: ") #Se crea label
     groupBoxTraslationLayoutContenedor3.layout().addWidget(labelEjeZ) #Se añade label al layout
 
     self.barraTranslacionZ = qt.QSlider(1) #Se crea un slicer 
@@ -177,10 +177,31 @@ class moduloTarea1Widget:
     transformada.SetAndObserveMatrixTransformToParent(matriztornillo1)
 
   def onMoveTraslacionY(self):
-    print "Trasladando en Y"
+    
+    tornillo1=slicer.util.getNode('Tornillo_1') #Se obtiene la informacion del tonillo cargado
+    transformada=slicer.vtkMRMLLinearTransformNode() #Se crea una transformada lineal
+    transformada.SetName('Transformada Tornillo 1') #Se asigna nombre a la transformada
+    slicer.mrmlScene.AddNode(transformada) #
+    tornillo1.SetAndObserveTransformNodeID(transformada.GetID())
+    matriztornillo1 = vtk.vtkMatrix4x4()
+    valorTrasladoSlidey=self.barraTranslacionY.value
+
+    transformada.GetMatrixTransformToParent(matriztornillo1)
+    matriztornillo1.SetElement(1,3,valorTrasladoSlidey)
+    transformada.SetAndObserveMatrixTransformToParent(matriztornillo1)
 
   def onMoveTraslacionZ(self):
-    print "Trasladando en Z"
+    tornillo1=slicer.util.getNode('Tornillo_1') #Se obtiene la informacion del tonillo cargado
+    transformada=slicer.vtkMRMLLinearTransformNode() #Se crea una transformada lineal
+    transformada.SetName('Transformada Tornillo 1') #Se asigna nombre a la transformada
+    slicer.mrmlScene.AddNode(transformada) #
+    tornillo1.SetAndObserveTransformNodeID(transformada.GetID())
+    matriztornillo1 = vtk.vtkMatrix4x4()
+    valorTrasladoSlidez=self.barraTranslacionZ.value
+
+    transformada.GetMatrixTransformToParent(matriztornillo1)
+    matriztornillo1.SetElement(2,3,valorTrasladoSlidez)
+    transformada.SetAndObserveMatrixTransformToParent(matriztornillo1)
 
   def onMoveTraslacionXspinBox(self):
     print "Se movio spinbox eje X"
