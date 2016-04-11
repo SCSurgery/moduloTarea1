@@ -73,14 +73,47 @@ class moduloTarea1Widget:
     sample1FormLayout.addWidget(groupBoxTraslation) #Se añade el groupbox al layout del boton
     
     groupBoxTraslationLayout = qt.QFormLayout( groupBoxTraslation ) #Se crea formLayout al groupLayout
+  
+    groupBoxTraslationLayoutContenedor1 = qt.QFrame(sample1CollapsibleButton)
+    groupBoxTraslationLayoutContenedor1.setLayout(qt.QHBoxLayout())
+    groupBoxTraslationLayout.layout().addWidget(groupBoxTraslationLayoutContenedor1)
+
     labelEjex = qt.QLabel("Traslacion eje x: ") #Se crea label
-    groupBoxTraslationLayout.layout().addWidget(labelEjex) #Se añade label al layout
+    groupBoxTraslationLayoutContenedor1.layout().addWidget(labelEjex) #Se añade label al layout
+
     self.barraTranslacionX = qt.QSlider(1) #Se crea un slicer 
     self.barraTranslacionX.setMinimum(-200) #Minimo del slider -200
     self.barraTranslacionX.setMaximum(200) #Maximo de slider 200
-    groupBoxTraslationLayout.layout().addWidget(self.barraTranslacionX) #Se añade slicer al layout
+    groupBoxTraslationLayoutContenedor1.layout().addWidget(self.barraTranslacionX) #Se añade slicer al layout
     self.barraTranslacionX.valueChanged.connect(self.onMoveTraslacionX) #Se crea metodo para saber cuando se mueve el slider
 
+#-----------------------------------------------------------------------------------------
+   
+    groupBoxTraslationLayoutContenedor2 = qt.QFrame(sample1CollapsibleButton)
+    groupBoxTraslationLayoutContenedor2.setLayout(qt.QHBoxLayout())
+    groupBoxTraslationLayout.layout().addWidget(groupBoxTraslationLayoutContenedor2)
+
+    labelEjey = qt.QLabel("Traslacion eje y: ") #Se crea label
+    groupBoxTraslationLayoutContenedor2.layout().addWidget(labelEjey) #Se añade label al layout
+
+    self.barraTranslacionY = qt.QSlider(1) #Se crea un slicer 
+    self.barraTranslacionY.setMinimum(-200) #Minimo del slider -200
+    self.barraTranslacionY.setMaximum(200) #Maximo de slider 200
+    groupBoxTraslationLayoutContenedor2.layout().addWidget(self.barraTranslacionY) #Se añade slicer al layout
+    self.barraTranslacionY.valueChanged.connect(self.onMoveTraslacionY) #Se crea metodo para saber cuando se mueve el slider
+#---------------------------------------------------------------------------------------------------
+    groupBoxTraslationLayoutContenedor3 = qt.QFrame(sample1CollapsibleButton)
+    groupBoxTraslationLayoutContenedor3.setLayout(qt.QHBoxLayout())
+    groupBoxTraslationLayout.layout().addWidget(groupBoxTraslationLayoutContenedor3)
+
+    labelEjeZ = qt.QLabel("Traslacion eje Z: ") #Se crea label
+    groupBoxTraslationLayoutContenedor3.layout().addWidget(labelEjeZ) #Se añade label al layout
+
+    self.barraTranslacionZ = qt.QSlider(1) #Se crea un slicer 
+    self.barraTranslacionZ.setMinimum(-200) #Minimo del slider -200
+    self.barraTranslacionZ.setMaximum(200) #Maximo de slider 200
+    groupBoxTraslationLayoutContenedor3.layout().addWidget(self.barraTranslacionZ) #Se añade slicer al layout
+    self.barraTranslacionZ.valueChanged.connect(self.onMoveTraslacionZ) #Se crea metodo para saber cuando se mueve el slider
 
 #---------------------------------------------------------------------------------------------------
   def onApply(self): 
@@ -115,4 +148,8 @@ class moduloTarea1Widget:
   def onMoveTraslacionX(self):
     print "Trasladando en x"
 
-  
+  def onMoveTraslacionY(self):
+    print "Trasladando en Y"
+
+  def onMoveTraslacionZ(self):
+    print "Trasladando en Z"
