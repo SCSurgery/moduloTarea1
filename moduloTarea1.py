@@ -87,7 +87,7 @@ class moduloTarea1Widget:
     groupBoxTraslationLayoutContenedor1.layout().addWidget(self.barraTranslacionX) #Se añade slicer al layout
     self.barraTranslacionX.valueChanged.connect(self.onMoveTraslacionX) #Se crea metodo para saber cuando se mueve el slider
 
-    self.spinBoxTraslacionX= qt.QSpinBox()
+    self.spinBoxTraslacionX= qt.QSpinBox() #Se crea Qspinbox
     self.spinBoxTraslacionX.setMinimum(-200)
     self.spinBoxTraslacionX.setMaximum(200)
 
@@ -108,7 +108,7 @@ class moduloTarea1Widget:
     groupBoxTraslationLayoutContenedor2.layout().addWidget(self.barraTranslacionY) #Se añade slicer al layout
     self.barraTranslacionY.valueChanged.connect(self.onMoveTraslacionY) #Se crea metodo para saber cuando se mueve el slider
 
-    self.spinBoxTraslacionY= qt.QSpinBox()
+    self.spinBoxTraslacionY= qt.QSpinBox() #Se crea Qspinbox
     self.spinBoxTraslacionY.setMinimum(-200)
     self.spinBoxTraslacionY.setMaximum(200)
     groupBoxTraslationLayoutContenedor2.layout().addWidget(self.spinBoxTraslacionY)
@@ -129,7 +129,7 @@ class moduloTarea1Widget:
     groupBoxTraslationLayoutContenedor3.layout().addWidget(self.barraTranslacionZ) #Se añade slicer al layout
     self.barraTranslacionZ.valueChanged.connect(self.onMoveTraslacionZ) #Se crea metodo para saber cuando se mueve el slider
 
-    self.spinBoxTraslacionZ= qt.QSpinBox()
+    self.spinBoxTraslacionZ= qt.QSpinBox() #Se crea Qspinbox
     self.spinBoxTraslacionZ.setMinimum(-200)
     self.spinBoxTraslacionZ.setMaximum(200)
     groupBoxTraslationLayoutContenedor3.layout().addWidget(self.spinBoxTraslacionZ)
@@ -168,13 +168,15 @@ class moduloTarea1Widget:
     transformada=slicer.vtkMRMLLinearTransformNode() #Se crea una transformada lineal
     transformada.SetName('Transformada Tornillo 1') #Se asigna nombre a la transformada
     slicer.mrmlScene.AddNode(transformada) #
-    tornillo1.SetAndObserveTransformNodeID(transformada.GetID())
-    matriztornillo1 = vtk.vtkMatrix4x4()
-    valorTrasladoSlidex=self.barraTranslacionX.value
+    tornillo1.SetAndObserveTransformNodeID(transformada.GetID())# Se relaciona la trnasformada con el objeto tornillo
+    matriztornillo1 = vtk.vtkMatrix4x4()  #Se crea matriz 4x4 para el tornillo
+    
+    valorTrasladoSlidex=self.barraTranslacionX.value  #Se obtiene el valor del slide modificado
+    self.spinBoxTraslacionX.setValue(valorTrasladoSlidex) #Se añade al SpinBox el valor modificado del slide
 
-    transformada.GetMatrixTransformToParent(matriztornillo1)
-    matriztornillo1.SetElement(0,3,valorTrasladoSlidex)
-    transformada.SetAndObserveMatrixTransformToParent(matriztornillo1)
+    transformada.GetMatrixTransformToParent(matriztornillo1)  #Se toma la matriz padre de movimiento
+    matriztornillo1.SetElement(0,3,valorTrasladoSlidex)  #Se modifica la matriz del tornillo
+    transformada.SetAndObserveMatrixTransformToParent(matriztornillo1) # Se añade la matriz del tornillo modificada a la matriz padre de movimientos
 
   def onMoveTraslacionY(self):
     
@@ -182,32 +184,73 @@ class moduloTarea1Widget:
     transformada=slicer.vtkMRMLLinearTransformNode() #Se crea una transformada lineal
     transformada.SetName('Transformada Tornillo 1') #Se asigna nombre a la transformada
     slicer.mrmlScene.AddNode(transformada) #
-    tornillo1.SetAndObserveTransformNodeID(transformada.GetID())
-    matriztornillo1 = vtk.vtkMatrix4x4()
-    valorTrasladoSlidey=self.barraTranslacionY.value
+    tornillo1.SetAndObserveTransformNodeID(transformada.GetID()) # Se relaciona la trnasformada con el objeto tornillo
+    matriztornillo1 = vtk.vtkMatrix4x4() #Se crea matriz 4x4 para el tornillo
+    
+    valorTrasladoSlidey=self.barraTranslacionY.value #Se obtiene el valor del slide modificado
+    self.spinBoxTraslacionY.setValue(valorTrasladoSlidey) #Se añade al SpinBox el valor modificado del slide
 
-    transformada.GetMatrixTransformToParent(matriztornillo1)
-    matriztornillo1.SetElement(1,3,valorTrasladoSlidey)
-    transformada.SetAndObserveMatrixTransformToParent(matriztornillo1)
+    transformada.GetMatrixTransformToParent(matriztornillo1) #Se toma la matriz padre de movimiento
+    matriztornillo1.SetElement(1,3,valorTrasladoSlidey)  #Se modifica la matriz del tornillo
+    transformada.SetAndObserveMatrixTransformToParent(matriztornillo1) # Se añade la matriz del tornillo modificada a la matriz padre de movimientos
 
   def onMoveTraslacionZ(self):
     tornillo1=slicer.util.getNode('Tornillo_1') #Se obtiene la informacion del tonillo cargado
     transformada=slicer.vtkMRMLLinearTransformNode() #Se crea una transformada lineal
     transformada.SetName('Transformada Tornillo 1') #Se asigna nombre a la transformada
     slicer.mrmlScene.AddNode(transformada) #
-    tornillo1.SetAndObserveTransformNodeID(transformada.GetID())
-    matriztornillo1 = vtk.vtkMatrix4x4()
-    valorTrasladoSlidez=self.barraTranslacionZ.value
+    tornillo1.SetAndObserveTransformNodeID(transformada.GetID()) # Se relaciona la trnasformada con el objeto tornillo
+    matriztornillo1 = vtk.vtkMatrix4x4() #Se crea matriz 4x4 para el tornillo
+    
+    valorTrasladoSlidez=self.barraTranslacionZ.value   #Se obtiene el valor del slide modificado
+    self.spinBoxTraslacionZ.setValue(valorTrasladoSlidez) #Se añade al SpinBox el valor modificado del slide
 
-    transformada.GetMatrixTransformToParent(matriztornillo1)
-    matriztornillo1.SetElement(2,3,valorTrasladoSlidez)
-    transformada.SetAndObserveMatrixTransformToParent(matriztornillo1)
+
+    transformada.GetMatrixTransformToParent(matriztornillo1)  #Se toma la matriz padre de movimiento
+    matriztornillo1.SetElement(2,3,valorTrasladoSlidez)  #Se modifica la matriz del tornillo
+    transformada.SetAndObserveMatrixTransformToParent(matriztornillo1)  # Se añade la matriz del tornillo modificada a la matriz padre de movimientos
 
   def onMoveTraslacionXspinBox(self):
-    print "Se movio spinbox eje X"
+    tornillo1=slicer.util.getNode('Tornillo_1') #Se obtiene la informacion del tonillo cargado
+    transformada=slicer.vtkMRMLLinearTransformNode() #Se crea una transformada lineal
+    transformada.SetName('Transformada Tornillo 1') #Se asigna nombre a la transformada
+    slicer.mrmlScene.AddNode(transformada) #
+    tornillo1.SetAndObserveTransformNodeID(transformada.GetID())# Se relaciona la trnasformada con el objeto tornillo
+    matriztornillo1 = vtk.vtkMatrix4x4()
+
+    valorTrasladoSlidex=self.spinBoxTraslacionX.value
+    self.barraTranslacionX.setValue(valorTrasladoSlidex)
+
+    transformada.GetMatrixTransformToParent(matriztornillo1)  #Se toma la matriz padre de movimiento
+    matriztornillo1.SetElement(0,3,valorTrasladoSlidex)  #Se modifica la matriz del tornillo
+    transformada.SetAndObserveMatrixTransformToParent(matriztornillo1)
 
   def onMoveTraslacionYspinBox(self):
-    print "Se movio spinbox eje Y"
+    tornillo1=slicer.util.getNode('Tornillo_1') #Se obtiene la informacion del tonillo cargado
+    transformada=slicer.vtkMRMLLinearTransformNode() #Se crea una transformada lineal
+    transformada.SetName('Transformada Tornillo 1') #Se asigna nombre a la transformada
+    slicer.mrmlScene.AddNode(transformada) #
+    tornillo1.SetAndObserveTransformNodeID(transformada.GetID())# Se relaciona la trnasformada con el objeto tornillo
+    matriztornillo1 = vtk.vtkMatrix4x4()
+
+    valorTrasladoSlidey=self.spinBoxTraslacionY.value
+    self.barraTranslacionY.setValue(valorTrasladoSlidey)
+
+    transformada.GetMatrixTransformToParent(matriztornillo1)  #Se toma la matriz padre de movimiento
+    matriztornillo1.SetElement(1,3,valorTrasladoSlidex)  #Se modifica la matriz del tornillo
+    transformada.SetAndObserveMatrixTransformToParent(matriztornillo1)
 
   def onMoveTraslacionZspinBox(self):
-    print "Se movio spinbox eje Z"
+    tornillo1=slicer.util.getNode('Tornillo_1') #Se obtiene la informacion del tonillo cargado
+    transformada=slicer.vtkMRMLLinearTransformNode() #Se crea una transformada lineal
+    transformada.SetName('Transformada Tornillo 1') #Se asigna nombre a la transformada
+    slicer.mrmlScene.AddNode(transformada) #
+    tornillo1.SetAndObserveTransformNodeID(transformada.GetID())# Se relaciona la trnasformada con el objeto tornillo
+    matriztornillo1 = vtk.vtkMatrix4x4()
+
+    valorTrasladoSlidez=self.spinBoxTraslacionZ.value
+    self.barraTranslacionZ.setValue(valorTrasladoSlidez)
+
+    transformada.GetMatrixTransformToParent(matriztornillo1)  #Se toma la matriz padre de movimiento
+    matriztornillo1.SetElement(2,3,valorTrasladoSlidez)  #Se modifica la matriz del tornillo
+    transformada.SetAndObserveMatrixTransformToParent(matriztornillo1)
