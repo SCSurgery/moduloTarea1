@@ -92,6 +92,7 @@ class moduloTarea1Widget:
     self.spinBoxTraslacionX.setMaximum(200)
 
     groupBoxTraslationLayoutContenedor1.layout().addWidget(self.spinBoxTraslacionX)
+    self.spinBoxTraslacionX.valueChanged.connect(self.onMoveTraslacionXspinBox)
 #-----------------------------------------------------------------------------------------
    
     groupBoxTraslationLayoutContenedor2 = qt.QFrame(sample1CollapsibleButton)
@@ -111,6 +112,8 @@ class moduloTarea1Widget:
     self.spinBoxTraslacionY.setMinimum(-200)
     self.spinBoxTraslacionY.setMaximum(200)
     groupBoxTraslationLayoutContenedor2.layout().addWidget(self.spinBoxTraslacionY)
+    self.spinBoxTraslacionY.valueChanged.connect(self.onMoveTraslacionYspinBox)
+
 
 #---------------------------------------------------------------------------------------------------
     groupBoxTraslationLayoutContenedor3 = qt.QFrame(sample1CollapsibleButton)
@@ -130,6 +133,8 @@ class moduloTarea1Widget:
     self.spinBoxTraslacionZ.setMinimum(-200)
     self.spinBoxTraslacionZ.setMaximum(200)
     groupBoxTraslationLayoutContenedor3.layout().addWidget(self.spinBoxTraslacionZ)
+    self.spinBoxTraslacionZ.valueChanged.connect(self.onMoveTraslacionZspinBox)
+
 
 #---------------------------------------------------------------------------------------------------
   def onApply(self): 
@@ -169,3 +174,12 @@ class moduloTarea1Widget:
 
   def onMoveTraslacionZ(self):
     print "Trasladando en Z"
+
+  def onMoveTraslacionXspinBox(self):
+    print "Se movio spinbox eje X"
+
+  def onMoveTraslacionYspinBox(self):
+    print "Se movio spinbox eje Y"
+
+  def onMoveTraslacionZspinBox(self):
+    print "Se movio spinbox eje Z"
