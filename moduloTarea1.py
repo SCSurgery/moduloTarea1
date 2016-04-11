@@ -68,6 +68,13 @@ class moduloTarea1Widget:
 
     sample1FormLayout = qt.QFormLayout(sample1CollapsibleButton) #Se anada QformLayout al boton colapsable
 
+    labelSeleccionTornillo = qt.QLabel("Seleccione tornillo a mover: ") #Se crea label para seleccion de tornillo a manipular
+    sample1FormLayout.addWidget(labelSeleccionTornillo) #Se añade label
+ 
+    self.comboBoxSeleccionTornillo = qt.QComboBox() #Se crea comboBox para seleccionar tornillo
+    self.comboBoxSeleccionTornillo.addItem("Tornillo 1") #Se añade opciones
+    self.comboBoxSeleccionTornillo.addItem("Tornillo 2")
+    sample1FormLayout.addWidget(self.comboBoxSeleccionTornillo) #Se añade al layout
     groupBoxTraslation = qt.QGroupBox() #Se crea un group box dentro del boton colapsable
     groupBoxTraslation.setTitle( 'Traslacion' ) #Se anade nombre al groupBox
     sample1FormLayout.addWidget(groupBoxTraslation) #Se añade el groupbox al layout del boton
@@ -151,6 +158,7 @@ class moduloTarea1Widget:
 
       path='C:\Users\Camilo_Q\Documents\MEGA\Trabajo_de_grado\moduloTarea1/Tornillo_1.STL' #Se obtiene direccion de la unbicación del tornillo
       slicer.util.loadModel(path) #Se carga el tornillo al espacio 3d
+      
       tornillo2=slicer.util.getNode('Tornillo_1') #Se obtiene la informacion del tonillo cargado
       transformada2=slicer.vtkMRMLLinearTransformNode() #Se crea una transformada lineal
       transformada2.SetName('Transformada Tornillo 2') #Se asigna nombre a la transformada
