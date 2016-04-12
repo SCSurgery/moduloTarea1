@@ -382,28 +382,218 @@ class moduloTarea1Widget:
     else:
       
       self.transformada2.GetMatrixTransformToParent(self.matriztornillo2)  #Se toma la matriz padre de movimiento
-      self.matriztornillo2.SetElement(0,3,valorTrasladoSlidex)  #Se modifica la matriz del tornillo
+      self.matriztornillo2.SetElement(0,0,1)  #Se modifica la matriz del tornillo
+      self.matriztornillo2.SetElement(0,1,0) 
+      self.matriztornillo2.SetElement(0,2,0) 
+
+      self.matriztornillo2.SetElement(1,0,0)  #Se modifica la matriz del tornillo
+      self.matriztornillo2.SetElement(1,1,math.cos(valorRotacionSlidex*0.017453292519943)) 
+      self.matriztornillo2.SetElement(1,2,-math.sin(valorRotacionSlidex*0.017453292519943)) 
+
+      self.matriztornillo2.SetElement(2,0,0)  #Se modifica la matriz del tornillo
+      self.matriztornillo2.SetElement(2,1,math.sin(valorRotacionSlidex*0.017453292519943)) 
+      self.matriztornillo2.SetElement(2,2,math.cos(valorRotacionSlidex*0.017453292519943))
+        
       self.transformada2.SetAndObserveMatrixTransformToParent(self.matriztornillo2) 
 
   def onMoveRotacionXspinBox(self):
-    valorTrasladoSlidex=self.spinBoxRotacionX.value
-    self.barraRotacionX.setValue(valorTrasladoSlidex)
+    valorRotacionSlidex=self.spinBoxRotacionX.value
+    self.barraRotacionX.setValue(valorRotacionSlidex)
+
+    if self.comboBoxSeleccionTornillo.currentIndex == 0:
+
+      self.transformada.GetMatrixTransformToParent(self.matriztornillo1)  #Se toma la matriz padre de movimiento
+     
+      self.matriztornillo1.SetElement(0,0,1)  #Se modifica la matriz del tornillo
+      self.matriztornillo1.SetElement(0,1,0) 
+      self.matriztornillo1.SetElement(0,2,0) 
+
+      self.matriztornillo1.SetElement(1,0,0)  #Se modifica la matriz del tornillo
+      self.matriztornillo1.SetElement(1,1,math.cos(valorRotacionSlidex*0.017453292519943)) 
+      self.matriztornillo1.SetElement(1,2,-math.sin(valorRotacionSlidex*0.017453292519943)) 
+
+      self.matriztornillo1.SetElement(2,0,0)  #Se modifica la matriz del tornillo
+      self.matriztornillo1.SetElement(2,1,math.sin(valorRotacionSlidex*0.017453292519943)) 
+      self.matriztornillo1.SetElement(2,2,math.cos(valorRotacionSlidex*0.017453292519943)) 
+
+      self.transformada.SetAndObserveMatrixTransformToParent(self.matriztornillo1) # Se añade la matriz del tornillo modificada a la matriz padre de movimientos
+
+    else:
+      
+      self.transformada2.GetMatrixTransformToParent(self.matriztornillo2)  #Se toma la matriz padre de movimiento
+      self.matriztornillo2.SetElement(0,0,1)  #Se modifica la matriz del tornillo
+      self.matriztornillo2.SetElement(0,1,0) 
+      self.matriztornillo2.SetElement(0,2,0) 
+
+      self.matriztornillo2.SetElement(1,0,0)  #Se modifica la matriz del tornillo
+      self.matriztornillo2.SetElement(1,1,math.cos(valorRotacionSlidex*0.017453292519943)) 
+      self.matriztornillo2.SetElement(1,2,-math.sin(valorRotacionSlidex*0.017453292519943)) 
+
+      self.matriztornillo2.SetElement(2,0,0)  #Se modifica la matriz del tornillo
+      self.matriztornillo2.SetElement(2,1,math.sin(valorRotacionSlidex*0.017453292519943)) 
+      self.matriztornillo2.SetElement(2,2,math.cos(valorRotacionSlidex*0.017453292519943))
+        
+      self.transformada2.SetAndObserveMatrixTransformToParent(self.matriztornillo2) 
 
   def onMoveRotacionY(self):
     valorRotacionSlidey=self.barraRotacionY.value  #Se obtiene el valor del slide modificado
     self.spinBoxRotacionY.setValue(valorRotacionSlidey)
 
+    if self.comboBoxSeleccionTornillo.currentIndex == 0:
+
+      self.transformada.GetMatrixTransformToParent(self.matriztornillo1)  #Se toma la matriz padre de movimiento
+     
+      self.matriztornillo1.SetElement(0,0,math.cos(valorRotacionSlidey*0.017453292519943))  #Se modifica la matriz del tornillo
+      self.matriztornillo1.SetElement(0,1,0) 
+      self.matriztornillo1.SetElement(0,2,math.sin(valorRotacionSlidey*0.017453292519943)) 
+
+      self.matriztornillo1.SetElement(1,0,0)  #Se modifica la matriz del tornillo
+      self.matriztornillo1.SetElement(1,1,1) 
+      self.matriztornillo1.SetElement(1,2,0) 
+
+      self.matriztornillo1.SetElement(2,0,-math.sin(valorRotacionSlidey*0.017453292519943))  #Se modifica la matriz del tornillo
+      self.matriztornillo1.SetElement(2,1,0) 
+      self.matriztornillo1.SetElement(2,2,math.cos(valorRotacionSlidey*0.017453292519943)) 
+
+      self.transformada.SetAndObserveMatrixTransformToParent(self.matriztornillo1) # Se añade la matriz del tornillo modificada a la matriz padre de movimientos
+
+    else:
+      
+      self.transformada2.GetMatrixTransformToParent(self.matriztornillo2) 
+       #Se toma la matriz padre de movimiento
+      self.matriztornillo2.SetElement(0,0,math.cos(valorRotacionSlidey*0.017453292519943))  #Se modifica la matriz del tornillo
+      self.matriztornillo2.SetElement(0,1,0) 
+      self.matriztornillo2.SetElement(0,2,math.sin(valorRotacionSlidey*0.017453292519943)) 
+
+      self.matriztornillo2.SetElement(1,0,0)  #Se modifica la matriz del tornillo
+      self.matriztornillo2.SetElement(1,1,1) 
+      self.matriztornillo2.SetElement(1,2,0) 
+
+      self.matriztornillo2.SetElement(2,0,-math.sin(valorRotacionSlidey*0.017453292519943))  #Se modifica la matriz del tornillo
+      self.matriztornillo2.SetElement(2,1,0) 
+      self.matriztornillo2.SetElement(2,2,math.cos(valorRotacionSlidey*0.017453292519943))
+        
+      self.transformada2.SetAndObserveMatrixTransformToParent(self.matriztornillo2)
+
   def onMoveRotacionYspinBox(self):
-    valorTrasladoSlidey=self.spinBoxRotacionY.value
-    self.barraRotacionY.setValue(valorTrasladoSlidey)
+    valorRotacionSlidey=self.spinBoxRotacionY.value
+    self.barraRotacionY.setValue(valorRotacionSlidey)
+
+    if self.comboBoxSeleccionTornillo.currentIndex == 0:
+
+      self.transformada.GetMatrixTransformToParent(self.matriztornillo1)  #Se toma la matriz padre de movimiento
+     
+      self.matriztornillo1.SetElement(0,0,math.cos(valorRotacionSlidey*0.017453292519943))  #Se modifica la matriz del tornillo
+      self.matriztornillo1.SetElement(0,1,0) 
+      self.matriztornillo1.SetElement(0,2,math.sin(valorRotacionSlidey*0.017453292519943)) 
+
+      self.matriztornillo1.SetElement(1,0,0)  #Se modifica la matriz del tornillo
+      self.matriztornillo1.SetElement(1,1,1) 
+      self.matriztornillo1.SetElement(1,2,0) 
+
+      self.matriztornillo1.SetElement(2,0,-math.sin(valorRotacionSlidey*0.017453292519943))  #Se modifica la matriz del tornillo
+      self.matriztornillo1.SetElement(2,1,0) 
+      self.matriztornillo1.SetElement(2,2,math.cos(valorRotacionSlidey*0.017453292519943)) 
+
+      self.transformada.SetAndObserveMatrixTransformToParent(self.matriztornillo1) # Se añade la matriz del tornillo modificada a la matriz padre de movimientos
+
+    else:
+      
+      self.transformada2.GetMatrixTransformToParent(self.matriztornillo2) 
+       #Se toma la matriz padre de movimiento
+      self.matriztornillo2.SetElement(0,0,math.cos(valorRotacionSlidey*0.017453292519943))  #Se modifica la matriz del tornillo
+      self.matriztornillo2.SetElement(0,1,0) 
+      self.matriztornillo2.SetElement(0,2,math.sin(valorRotacionSlidey*0.017453292519943)) 
+
+      self.matriztornillo2.SetElement(1,0,0)  #Se modifica la matriz del tornillo
+      self.matriztornillo2.SetElement(1,1,1) 
+      self.matriztornillo2.SetElement(1,2,0) 
+
+      self.matriztornillo2.SetElement(2,0,-math.sin(valorRotacionSlidey*0.017453292519943))  #Se modifica la matriz del tornillo
+      self.matriztornillo2.SetElement(2,1,0) 
+      self.matriztornillo2.SetElement(2,2,math.cos(valorRotacionSlidey*0.017453292519943))
+        
+      self.transformada2.SetAndObserveMatrixTransformToParent(self.matriztornillo2)
 
   def onMoveRotacionZ(self):
     valorRotacionSlidez=self.barraRotacionZ.value  #Se obtiene el valor del slide modificado
     self.spinBoxRotacionZ.setValue(valorRotacionSlidez)
 
+    if self.comboBoxSeleccionTornillo.currentIndex == 0:
+
+      self.transformada.GetMatrixTransformToParent(self.matriztornillo1)  #Se toma la matriz padre de movimiento
+     
+      self.matriztornillo1.SetElement(0,0,math.cos(valorRotacionSlidez*0.017453292519943))  #Se modifica la matriz del tornillo
+      self.matriztornillo1.SetElement(0,1,-math.sin(valorRotacionSlidez*0.017453292519943)) 
+      self.matriztornillo1.SetElement(0,2,0) 
+
+      self.matriztornillo1.SetElement(1,0,math.sin(valorRotacionSlidez*0.017453292519943))  #Se modifica la matriz del tornillo
+      self.matriztornillo1.SetElement(1,1,math.cos(valorRotacionSlidez*0.017453292519943)) 
+      self.matriztornillo1.SetElement(1,2,0) 
+
+      self.matriztornillo1.SetElement(2,0,0)  #Se modifica la matriz del tornillo
+      self.matriztornillo1.SetElement(2,1,0) 
+      self.matriztornillo1.SetElement(2,2,1) 
+
+      self.transformada.SetAndObserveMatrixTransformToParent(self.matriztornillo1) # Se añade la matriz del tornillo modificada a la matriz padre de movimientos
+
+    else:
+      
+      self.transformada2.GetMatrixTransformToParent(self.matriztornillo2) 
+       #Se toma la matriz padre de movimiento
+      self.matriztornillo2.SetElement(0,0,math.cos(valorRotacionSlidez*0.017453292519943))  #Se modifica la matriz del tornillo
+      self.matriztornillo2.SetElement(0,1,-math.sin(valorRotacionSlidez*0.017453292519943)) 
+      self.matriztornillo2.SetElement(0,2,0) 
+
+      self.matriztornillo2.SetElement(1,0,math.sin(valorRotacionSlidez*0.017453292519943))  #Se modifica la matriz del tornillo
+      self.matriztornillo2.SetElement(1,1,math.cos(valorRotacionSlidez*0.017453292519943)) 
+      self.matriztornillo2.SetElement(1,2,0) 
+
+      self.matriztornillo2.SetElement(2,0,0)  #Se modifica la matriz del tornillo
+      self.matriztornillo2.SetElement(2,1,0) 
+      self.matriztornillo2.SetElement(2,2,1) 
+        
+      self.transformada2.SetAndObserveMatrixTransformToParent(self.matriztornillo2)
+
   def onMoveRotacionZspinBox(self):
-    valorTrasladoSlidez=self.spinBoxRotacionZ.value
-    self.barraRotacionZ.setValue(valorTrasladoSlidez)
+    valorRotacionSlidez=self.spinBoxRotacionZ.value
+    self.barraRotacionZ.setValue(valorRotacionSlidez)
+
+    if self.comboBoxSeleccionTornillo.currentIndex == 0:
+
+      self.transformada.GetMatrixTransformToParent(self.matriztornillo1)  #Se toma la matriz padre de movimiento
+     
+      self.matriztornillo1.SetElement(0,0,math.cos(valorRotacionSlidez*0.017453292519943))  #Se modifica la matriz del tornillo
+      self.matriztornillo1.SetElement(0,1,-math.sin(valorRotacionSlidez*0.017453292519943)) 
+      self.matriztornillo1.SetElement(0,2,0) 
+
+      self.matriztornillo1.SetElement(1,0,math.sin(valorRotacionSlidez*0.017453292519943))  #Se modifica la matriz del tornillo
+      self.matriztornillo1.SetElement(1,1,math.cos(valorRotacionSlidez*0.017453292519943)) 
+      self.matriztornillo1.SetElement(1,2,0) 
+
+      self.matriztornillo1.SetElement(2,0,0)  #Se modifica la matriz del tornillo
+      self.matriztornillo1.SetElement(2,1,0) 
+      self.matriztornillo1.SetElement(2,2,1) 
+
+      self.transformada.SetAndObserveMatrixTransformToParent(self.matriztornillo1) # Se añade la matriz del tornillo modificada a la matriz padre de movimientos
+
+    else:
+      
+      self.transformada2.GetMatrixTransformToParent(self.matriztornillo2) 
+       #Se toma la matriz padre de movimiento
+      self.matriztornillo2.SetElement(0,0,math.cos(valorRotacionSlidez*0.017453292519943))  #Se modifica la matriz del tornillo
+      self.matriztornillo2.SetElement(0,1,-math.sin(valorRotacionSlidez*0.017453292519943)) 
+      self.matriztornillo2.SetElement(0,2,0) 
+
+      self.matriztornillo2.SetElement(1,0,math.sin(valorRotacionSlidez*0.017453292519943))  #Se modifica la matriz del tornillo
+      self.matriztornillo2.SetElement(1,1,math.cos(valorRotacionSlidez*0.017453292519943)) 
+      self.matriztornillo2.SetElement(1,2,0) 
+
+      self.matriztornillo2.SetElement(2,0,0)  #Se modifica la matriz del tornillo
+      self.matriztornillo2.SetElement(2,1,0) 
+      self.matriztornillo2.SetElement(2,2,1) 
+        
+      self.transformada2.SetAndObserveMatrixTransformToParent(self.matriztornillo2)
 
   def onMoveComboBox(self):
     if self.comboBoxSeleccionTornillo.currentIndex == 1:
