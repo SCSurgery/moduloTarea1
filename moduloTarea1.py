@@ -1,5 +1,6 @@
 # -*- coding: UTF-8 -*-
 from __main__ import vtk, qt, ctk, slicer
+import math
 
 
 class moduloTarea1():
@@ -34,6 +35,8 @@ class moduloTarea1Widget:
 
     #Path para camilo= C:\Users\Camilo_Q\Documents\GitHub\moduloTarea1/Tornillo_1.STL
     #Path para Nicolas = ...
+
+    print math.sin(45*0.017453292519943)
 
     path1='C:\Users\Camilo_Q\Documents\GitHub\moduloTarea1/stlcolumna.stl' #Se obtiene direccion de la unbicación del tornillo
     slicer.util.loadModel(path1)
@@ -357,6 +360,30 @@ class moduloTarea1Widget:
   def onMoveRotacionX(self):
     valorRotacionSlidex=self.barraRotacionX.value  #Se obtiene el valor del slide modificado
     self.spinBoxRotacionX.setValue(valorRotacionSlidex)
+
+    if self.comboBoxSeleccionTornillo.currentIndex == 0:
+
+      self.transformada.GetMatrixTransformToParent(self.matriztornillo1)  #Se toma la matriz padre de movimiento
+     
+      self.matriztornillo1.SetElement(0,0,1)  #Se modifica la matriz del tornillo
+      self.matriztornillo1.SetElement(0,1,0) 
+      self.matriztornillo1.SetElement(0,2,0) 
+
+      self.matriztornillo1.SetElement(1,0,0)  #Se modifica la matriz del tornillo
+      self.matriztornillo1.SetElement(1,1,math.cos(valorRotacionSlidex*0.017453292519943)) 
+      self.matriztornillo1.SetElement(1,2,-math.sin(valorRotacionSlidex*0.017453292519943)) 
+
+      self.matriztornillo1.SetElement(2,0,0)  #Se modifica la matriz del tornillo
+      self.matriztornillo1.SetElement(2,1,math.sin(valorRotacionSlidex*0.017453292519943)) 
+      self.matriztornillo1.SetElement(2,2,math.cos(valorRotacionSlidex*0.017453292519943)) 
+
+      self.transformada.SetAndObserveMatrixTransformToParent(self.matriztornillo1) # Se añade la matriz del tornillo modificada a la matriz padre de movimientos
+
+    else:
+      
+      self.transformada2.GetMatrixTransformToParent(self.matriztornillo2)  #Se toma la matriz padre de movimiento
+      self.matriztornillo2.SetElement(0,3,valorTrasladoSlidex)  #Se modifica la matriz del tornillo
+      self.transformada2.SetAndObserveMatrixTransformToParent(self.matriztornillo2) 
 
   def onMoveRotacionXspinBox(self):
     valorTrasladoSlidex=self.spinBoxRotacionX.value
