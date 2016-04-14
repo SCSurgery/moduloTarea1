@@ -152,6 +152,26 @@ class moduloTarea1Widget:
     groupBoxTraslationLayoutContenedor3.layout().addWidget(self.spinBoxTraslacionZ)
     self.spinBoxTraslacionZ.valueChanged.connect(self.onMoveTraslacionZspinBox)
 #---------------------------------------------------------------------------------------------------
+    groupBoxTraslationLayoutContenedor4 = qt.QFrame(sample1CollapsibleButton)
+    groupBoxTraslationLayoutContenedor4.setLayout(qt.QHBoxLayout())
+    groupBoxTraslationLayout.layout().addWidget(groupBoxTraslationLayoutContenedor4)
+
+    labelEjeEje = qt.QLabel("Traslacion eje tornillo: ") #Se crea label
+    groupBoxTraslationLayoutContenedor4.layout().addWidget(labelEjeEje) #Se añade label al layout
+
+    self.barraTranslacionEje = qt.QSlider(1) #Se crea un slicer 
+    self.barraTranslacionEje.setMinimum(-200) #Minimo del slider -200
+    self.barraTranslacionEje.setMaximum(200) #Maximo de slider 200
+    groupBoxTraslationLayoutContenedor4.layout().addWidget(self.barraTranslacionEje) #Se añade slicer al layout
+    self.barraTranslacionEje.valueChanged.connect(self.onMoveTraslacionEje) #Se crea metodo para saber cuando se mueve el slider
+
+    self.spinBoxTraslacionEje= qt.QSpinBox() #Se crea Qspinbox
+    self.spinBoxTraslacionEje.setSuffix(".00mm")
+    self.spinBoxTraslacionEje.setMinimum(-200)
+    self.spinBoxTraslacionEje.setMaximum(200)
+    groupBoxTraslationLayoutContenedor4.layout().addWidget(self.spinBoxTraslacionEje)
+    self.spinBoxTraslacionEje.valueChanged.connect(self.onMoveTraslacionEjespinBox)
+#---------------------------------------------------------------------------------------------------
     groupBoxRotation = qt.QGroupBox() #Se crea un group box dentro del boton colapsable
     groupBoxRotation.setTitle( 'Rotacion' ) #Se anade nombre al groupBox
     sample1FormLayout.addWidget(groupBoxRotation)
@@ -638,9 +658,6 @@ class moduloTarea1Widget:
         self.barraRotacionY.setValue(0)
         self.barraRotacionZ.setValue(0)
 
-
-
-
     else:
       self.transformada.GetMatrixTransformToParent(self.matriztornillo1)  #Se toma la matriz padre de movimiento
       x=self.matriztornillo1.GetElement(0,3)  #Se toman los valores actuales de la matriz
@@ -663,3 +680,9 @@ class moduloTarea1Widget:
         self.barraRotacionX.setValue(0)
         self.barraRotacionY.setValue(0)
         self.barraRotacionZ.setValue(0)
+
+  def onMoveTraslacionEje(self):
+    print "Traslacion eje tornillo slide"
+
+  def onMoveTraslacionEjespinBox(self):
+    print "Traslacion eje tornillo spinBox"
