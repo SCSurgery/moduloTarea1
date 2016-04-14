@@ -364,6 +364,8 @@ class moduloTarea1Widget:
 
     if self.comboBoxSeleccionTornillo.currentIndex == 0:
 
+      self.gradoX1=self.valorRotacionSlidex
+
       self.transformada.GetMatrixTransformToParent(self.matriztornillo1)  #Se toma la matriz padre de movimiento
      
       self.matriztornillo1.SetElement(0,0,math.cos(self.valorRotacionSlidey*0.017453292519943)*math.cos(self.valorRotacionSlidez*0.017453292519943))  #Se modifica la matriz del tornillo
@@ -380,6 +382,8 @@ class moduloTarea1Widget:
       self.transformada.SetAndObserveMatrixTransformToParent(self.matriztornillo1) # Se añade la matriz del tornillo modificada a la matriz padre de movimientos
 
     else:
+
+      self.gradoX2=self.valorRotacionSlidex
       
       self.transformada2.GetMatrixTransformToParent(self.matriztornillo2)  #Se toma la matriz padre de movimiento
      
@@ -446,6 +450,8 @@ class moduloTarea1Widget:
 
     if self.comboBoxSeleccionTornillo.currentIndex == 0:
 
+      self.gradoY1=self.valorRotacionSlidey
+
       self.transformada.GetMatrixTransformToParent(self.matriztornillo1)  #Se toma la matriz padre de movimiento
      
       self.matriztornillo1.SetElement(0,0,math.cos(self.valorRotacionSlidey*0.017453292519943)*math.cos(self.valorRotacionSlidez*0.017453292519943))  #Se modifica la matriz del tornillo
@@ -462,6 +468,8 @@ class moduloTarea1Widget:
       self.transformada.SetAndObserveMatrixTransformToParent(self.matriztornillo1) # Se añade la matriz del tornillo modificada a la matriz padre de movimientos
 
     else:
+
+      self.gradoY2=self.valorRotacionSlidey
       
       self.transformada2.GetMatrixTransformToParent(self.matriztornillo2)  #Se toma la matriz padre de movimiento
      
@@ -519,12 +527,15 @@ class moduloTarea1Widget:
       self.transformada2.SetAndObserveMatrixTransformToParent(self.matriztornillo2)
 
   def onMoveRotacionZ(self):
+
     self.valorRotacionSlidex=self.barraRotacionX.value  #Se obtiene el valor del slide modificado
     self.valorRotacionSlidey=self.barraRotacionY.value
     self.valorRotacionSlidez=self.barraRotacionZ.value
     self.spinBoxRotacionZ.setValue(self.valorRotacionSlidez)
 
     if self.comboBoxSeleccionTornillo.currentIndex == 0:
+
+      self.gradoZ1=self.valorRotacionSlidez
 
       self.transformada.GetMatrixTransformToParent(self.matriztornillo1)  #Se toma la matriz padre de movimiento
      
@@ -542,6 +553,8 @@ class moduloTarea1Widget:
       self.transformada.SetAndObserveMatrixTransformToParent(self.matriztornillo1)
 
     else:
+
+      self.gradoZ2=self.valorRotacionSlidez
       
       self.transformada2.GetMatrixTransformToParent(self.matriztornillo2)  #Se toma la matriz padre de movimiento
      
@@ -560,6 +573,7 @@ class moduloTarea1Widget:
       self.transformada2.SetAndObserveMatrixTransformToParent(self.matriztornillo2)
 
   def onMoveRotacionZspinBox(self):
+
     self.valorRotacionSlidez=self.spinBoxRotacionZ.value
     self.barraRotacionZ.setValue(self.valorRotacionSlidez)
 
@@ -607,12 +621,25 @@ class moduloTarea1Widget:
       y=self.matriztornillo2.GetElement(1,3)
       z=self.matriztornillo2.GetElement(2,3)
 
+
       self.barraTranslacionX.setValue(x) # Se actualizan los slides y spins al valor de la matriz
       self.spinBoxTraslacionX.setValue(x)
       self.barraTranslacionY.setValue(y)
       self.spinBoxTraslacionY.setValue(y)
       self.barraTranslacionZ.setValue(z)
       self.spinBoxTraslacionZ.setValue(z)
+
+      try:
+        self.barraRotacionX.setValue(self.gradoX2)
+        self.barraRotacionY.setValue(self.gradoY2)
+        self.barraRotacionZ.setValue(self.gradoZ2)
+      except (AttributeError):
+        self.barraRotacionX.setValue(0)
+        self.barraRotacionY.setValue(0)
+        self.barraRotacionZ.setValue(0)
+
+
+
 
     else:
       self.transformada.GetMatrixTransformToParent(self.matriztornillo1)  #Se toma la matriz padre de movimiento
@@ -626,3 +653,13 @@ class moduloTarea1Widget:
       self.spinBoxTraslacionY.setValue(y)
       self.barraTranslacionZ.setValue(z)
       self.spinBoxTraslacionZ.setValue(z)
+
+      try:
+        self.barraRotacionX.setValue(self.gradoX1)
+        self.barraRotacionY.setValue(self.gradoY1)
+        self.barraRotacionZ.setValue(self.gradoZ1No)
+
+      except (AttributeError):
+        self.barraRotacionX.setValue(0)
+        self.barraRotacionY.setValue(0)
+        self.barraRotacionZ.setValue(0)
