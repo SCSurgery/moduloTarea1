@@ -355,14 +355,12 @@ class moduloTarea1Widget:
       self.transformada2.SetAndObserveMatrixTransformToParent(self.matriztornillo2)
 
   def onMoveRotacionX(self):
+
     self.valorRotacionSlidex=self.barraRotacionX.value  #Se obtiene el valor del slide modificado
     self.valorRotacionSlidey=self.barraRotacionY.value
     self.valorRotacionSlidez=self.barraRotacionZ.value
 
-    print self.valorRotacionSlidex
-    print self.valorRotacionSlidey
-    print self.valorRotacionSlidez
-    #self.spinBoxRotacionX.setValue(self.valorRotacionSlidex)
+    self.spinBoxRotacionX.setValue(self.valorRotacionSlidex)
 
     if self.comboBoxSeleccionTornillo.currentIndex == 0:
 
@@ -374,32 +372,33 @@ class moduloTarea1Widget:
 
       self.matriztornillo1.SetElement(1,0,-math.cos(self.valorRotacionSlidey*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943))  #Se modifica la matriz del tornillo
       self.matriztornillo1.SetElement(1,1,(math.cos(self.valorRotacionSlidex*0.017453292519943)*math.cos(self.valorRotacionSlidez*0.017453292519943))-(math.sin(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidey*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943)) )
-      self.matriztornillo1.SetElement(1,2,(math.sin(self.valorRotacionSlidez*0.017453292519943)*math.sin(self.valorRotacionSlidex*0.017453292519943))+(math.cos(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidey*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943)) )
+      self.matriztornillo1.SetElement(1,2,(math.cos(self.valorRotacionSlidez*0.017453292519943)*math.sin(self.valorRotacionSlidex*0.017453292519943))+(math.cos(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidey*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943)) )
 
       self.matriztornillo1.SetElement(2,0,math.sin(self.valorRotacionSlidey*0.017453292519943))  #Se modifica la matriz del tornillo
       self.matriztornillo1.SetElement(2,1,-math.sin(self.valorRotacionSlidex*0.017453292519943)*math.cos(self.valorRotacionSlidey*0.017453292519943)) 
       self.matriztornillo1.SetElement(2,2,math.cos(self.valorRotacionSlidex*0.017453292519943)*math.cos(self.valorRotacionSlidey*0.017453292519943))
-
       self.transformada.SetAndObserveMatrixTransformToParent(self.matriztornillo1) # Se añade la matriz del tornillo modificada a la matriz padre de movimientos
 
     else:
       
       self.transformada2.GetMatrixTransformToParent(self.matriztornillo2)  #Se toma la matriz padre de movimiento
-      self.matriztornillo1.SetElement(0,0,math.cos(valorRotacionSlidey*0.017453292519943)*math.cos(valorRotacionSlidex*0.017453292519943))  #Se modifica la matriz del tornillo
-      self.matriztornillo1.SetElement(0,1,math.cos(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidex*0.017453292519943)+math.sin(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidey*0.017453292519943)*math.cos(valorRotacionSlidex*0.017453292519943)) 
-      self.matriztornillo1.SetElement(0,2,math.sin(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidex*0.017453292519943)-math.cos(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidey*0.017453292519943)*math.cos(valorRotacionSlidex*0.017453292519943)) 
+     
+      self.matriztornillo2.SetElement(0,0,math.cos(self.valorRotacionSlidey*0.017453292519943)*math.cos(self.valorRotacionSlidez*0.017453292519943))  #Se modifica la matriz del tornillo
+      self.matriztornillo2.SetElement(0,1,(math.cos(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943))+(math.sin(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidey*0.017453292519943)*math.cos(self.valorRotacionSlidez*0.017453292519943)) )
+      self.matriztornillo2.SetElement(0,2,(math.sin(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943))-(math.cos(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidey*0.017453292519943)*math.cos(self.valorRotacionSlidez*0.017453292519943)) )
 
-      self.matriztornillo1.SetElement(1,0,-math.cos(valorRotacionSlidey*0.017453292519943)*math.sin(valorRotacionSlidex*0.017453292519943))  #Se modifica la matriz del tornillo
-      self.matriztornillo1.SetElement(1,1,math.cos(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidex*0.017453292519943)-math.sin(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidey*0.017453292519943)*math.cos(valorRotacionSlidex*0.017453292519943)) 
-      self.matriztornillo1.SetElement(1,2,math.sin(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidex*0.017453292519943)-math.cos(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidey*0.017453292519943)*math.cos(valorRotacionSlidex*0.017453292519943)) 
+      self.matriztornillo2.SetElement(1,0,-math.cos(self.valorRotacionSlidey*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943))  #Se modifica la matriz del tornillo
+      self.matriztornillo2.SetElement(1,1,(math.cos(self.valorRotacionSlidex*0.017453292519943)*math.cos(self.valorRotacionSlidez*0.017453292519943))-(math.sin(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidey*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943)) )
+      self.matriztornillo2.SetElement(1,2,(math.cos(self.valorRotacionSlidez*0.017453292519943)*math.sin(self.valorRotacionSlidex*0.017453292519943))+(math.cos(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidey*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943)) )
 
-      self.matriztornillo1.SetElement(2,0,math.sin(valorRotacionSlidey*0.017453292519943))  #Se modifica la matriz del tornillo
-      self.matriztornillo1.SetElement(2,1,-math.sin(valorRotacionSlidez*0.017453292519943)*math.cos(valorRotacionSlidey*0.017453292519943)) 
-      self.matriztornillo1.SetElement(2,2,math.cos(valorRotacionSlidex*0.017453292519943)*math.cos(valorRotacionSlidez*0.017453292519943)) 
-        
+      self.matriztornillo2.SetElement(2,0,math.sin(self.valorRotacionSlidey*0.017453292519943))  #Se modifica la matriz del tornillo
+      self.matriztornillo2.SetElement(2,1,-math.sin(self.valorRotacionSlidex*0.017453292519943)*math.cos(self.valorRotacionSlidey*0.017453292519943)) 
+      self.matriztornillo2.SetElement(2,2,math.cos(self.valorRotacionSlidex*0.017453292519943)*math.cos(self.valorRotacionSlidey*0.017453292519943))
+
       self.transformada2.SetAndObserveMatrixTransformToParent(self.matriztornillo2) 
 
   def onMoveRotacionXspinBox(self):
+
     self.valorRotacionSlidex=self.spinBoxRotacionX.value
     self.barraRotacionX.setValue(self.valorRotacionSlidex)
 
@@ -407,43 +406,43 @@ class moduloTarea1Widget:
 
       self.transformada.GetMatrixTransformToParent(self.matriztornillo1)  #Se toma la matriz padre de movimiento
      
-      self.matriztornillo1.SetElement(0,0,math.cos(self.valorRotacionSlidey*0.017453292519943)*math.cos(self.valorRotacionSlidex*0.017453292519943))  #Se modifica la matriz del tornillo
-      self.matriztornillo1.SetElement(0,1,math.cos(self.valorRotacionSlidez*0.017453292519943)*math.sin(self.valorRotacionSlidex*0.017453292519943)+math.sin(self.valorRotacionSlidez*0.017453292519943)*math.sin(self.valorRotacionSlidey*0.017453292519943)*math.cos(self.valorRotacionSlidex*0.017453292519943)) 
-      self.matriztornillo1.SetElement(0,2,math.sin(self.valorRotacionSlidez*0.017453292519943)*math.sin(self.valorRotacionSlidex*0.017453292519943)-math.cos(self.valorRotacionSlidez*0.017453292519943)*math.sin(self.valorRotacionSlidey*0.017453292519943)*math.cos(self.valorRotacionSlidex*0.017453292519943)) 
+      self.matriztornillo1.SetElement(0,0,math.cos(self.valorRotacionSlidey*0.017453292519943)*math.cos(self.valorRotacionSlidez*0.017453292519943))  #Se modifica la matriz del tornillo
+      self.matriztornillo1.SetElement(0,1,(math.cos(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943))+(math.sin(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidey*0.017453292519943)*math.cos(self.valorRotacionSlidez*0.017453292519943)) )
+      self.matriztornillo1.SetElement(0,2,(math.sin(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943))-(math.cos(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidey*0.017453292519943)*math.cos(self.valorRotacionSlidez*0.017453292519943)) )
 
-      self.matriztornillo1.SetElement(1,0,-math.cos(self.valorRotacionSlidey*0.017453292519943)*math.sin(self.valorRotacionSlidex*0.017453292519943))  #Se modifica la matriz del tornillo
-      self.matriztornillo1.SetElement(1,1,math.cos(self.valorRotacionSlidez*0.017453292519943)*math.sin(self.valorRotacionSlidex*0.017453292519943)-math.sin(self.valorRotacionSlidez*0.017453292519943)*math.sin(self.valorRotacionSlidey*0.017453292519943)*math.cos(self.valorRotacionSlidex*0.017453292519943)) 
-      self.matriztornillo1.SetElement(1,2,math.sin(self.valorRotacionSlidez*0.017453292519943)*math.sin(self.valorRotacionSlidex*0.017453292519943)-math.cos(self.valorRotacionSlidez*0.017453292519943)*math.sin(self.valorRotacionSlidey*0.017453292519943)*math.cos(self.valorRotacionSlidex*0.017453292519943)) 
+      self.matriztornillo1.SetElement(1,0,-math.cos(self.valorRotacionSlidey*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943))  #Se modifica la matriz del tornillo
+      self.matriztornillo1.SetElement(1,1,(math.cos(self.valorRotacionSlidex*0.017453292519943)*math.cos(self.valorRotacionSlidez*0.017453292519943))-(math.sin(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidey*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943)) )
+      self.matriztornillo1.SetElement(1,2,(math.cos(self.valorRotacionSlidez*0.017453292519943)*math.sin(self.valorRotacionSlidex*0.017453292519943))+(math.cos(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidey*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943)) )
 
       self.matriztornillo1.SetElement(2,0,math.sin(self.valorRotacionSlidey*0.017453292519943))  #Se modifica la matriz del tornillo
-      self.matriztornillo1.SetElement(2,1,-math.sin(self.valorRotacionSlidez*0.017453292519943)*math.cos(self.valorRotacionSlidey*0.017453292519943)) 
-      self.matriztornillo1.SetElement(2,2,math.cos(self.valorRotacionSlidex*0.017453292519943)*math.cos(self.valorRotacionSlidez*0.017453292519943))  
+      self.matriztornillo1.SetElement(2,1,-math.sin(self.valorRotacionSlidex*0.017453292519943)*math.cos(self.valorRotacionSlidey*0.017453292519943)) 
+      self.matriztornillo1.SetElement(2,2,math.cos(self.valorRotacionSlidex*0.017453292519943)*math.cos(self.valorRotacionSlidey*0.017453292519943))
 
       self.transformada.SetAndObserveMatrixTransformToParent(self.matriztornillo1) # Se añade la matriz del tornillo modificada a la matriz padre de movimientos
 
     else:
       
       self.transformada2.GetMatrixTransformToParent(self.matriztornillo2)  #Se toma la matriz padre de movimiento
-      
-      self.matriztornillo1.SetElement(0,0,math.cos(valorRotacionSlidey*0.017453292519943)*math.cos(valorRotacionSlidex*0.017453292519943))  #Se modifica la matriz del tornillo
-      self.matriztornillo1.SetElement(0,1,math.cos(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidex*0.017453292519943)+math.sin(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidey*0.017453292519943)*math.cos(valorRotacionSlidex*0.017453292519943)) 
-      self.matriztornillo1.SetElement(0,2,math.sin(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidex*0.017453292519943)-math.cos(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidey*0.017453292519943)*math.cos(valorRotacionSlidex*0.017453292519943)) 
+     
+      self.matriztornillo2.SetElement(0,0,math.cos(self.valorRotacionSlidey*0.017453292519943)*math.cos(self.valorRotacionSlidez*0.017453292519943))  #Se modifica la matriz del tornillo
+      self.matriztornillo2.SetElement(0,1,(math.cos(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943))+(math.sin(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidey*0.017453292519943)*math.cos(self.valorRotacionSlidez*0.017453292519943)) )
+      self.matriztornillo2.SetElement(0,2,(math.sin(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943))-(math.cos(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidey*0.017453292519943)*math.cos(self.valorRotacionSlidez*0.017453292519943)) )
 
-      self.matriztornillo1.SetElement(1,0,-math.cos(valorRotacionSlidey*0.017453292519943)*math.sin(valorRotacionSlidex*0.017453292519943))  #Se modifica la matriz del tornillo
-      self.matriztornillo1.SetElement(1,1,math.cos(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidex*0.017453292519943)-math.sin(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidey*0.017453292519943)*math.cos(valorRotacionSlidex*0.017453292519943)) 
-      self.matriztornillo1.SetElement(1,2,math.sin(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidex*0.017453292519943)-math.cos(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidey*0.017453292519943)*math.cos(valorRotacionSlidex*0.017453292519943)) 
+      self.matriztornillo2.SetElement(1,0,-math.cos(self.valorRotacionSlidey*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943))  #Se modifica la matriz del tornillo
+      self.matriztornillo2.SetElement(1,1,(math.cos(self.valorRotacionSlidex*0.017453292519943)*math.cos(self.valorRotacionSlidez*0.017453292519943))-(math.sin(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidey*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943)) )
+      self.matriztornillo2.SetElement(1,2,(math.cos(self.valorRotacionSlidez*0.017453292519943)*math.sin(self.valorRotacionSlidex*0.017453292519943))+(math.cos(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidey*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943)) )
 
-      self.matriztornillo1.SetElement(2,0,math.sin(valorRotacionSlidey*0.017453292519943))  #Se modifica la matriz del tornillo
-      self.matriztornillo1.SetElement(2,1,-math.sin(valorRotacionSlidez*0.017453292519943)*math.cos(valorRotacionSlidey*0.017453292519943)) 
-      self.matriztornillo1.SetElement(2,2,math.cos(valorRotacionSlidex*0.017453292519943)*math.cos(valorRotacionSlidez*0.017453292519943)) 
-        
+      self.matriztornillo2.SetElement(2,0,math.sin(self.valorRotacionSlidey*0.017453292519943))  #Se modifica la matriz del tornillo
+      self.matriztornillo2.SetElement(2,1,-math.sin(self.valorRotacionSlidex*0.017453292519943)*math.cos(self.valorRotacionSlidey*0.017453292519943)) 
+      self.matriztornillo2.SetElement(2,2,math.cos(self.valorRotacionSlidex*0.017453292519943)*math.cos(self.valorRotacionSlidey*0.017453292519943))
+
       self.transformada2.SetAndObserveMatrixTransformToParent(self.matriztornillo2) 
 
   def onMoveRotacionY(self):
     self.valorRotacionSlidex=self.barraRotacionX.value  #Se obtiene el valor del slide modificado
     self.valorRotacionSlidey=self.barraRotacionY.value
     self.valorRotacionSlidez=self.barraRotacionZ.value
-    #self.spinBoxRotacionY.setValue(self.valorRotacionSlidey)
+    self.spinBoxRotacionY.setValue(self.valorRotacionSlidey)
 
     if self.comboBoxSeleccionTornillo.currentIndex == 0:
 
@@ -455,30 +454,29 @@ class moduloTarea1Widget:
 
       self.matriztornillo1.SetElement(1,0,-math.cos(self.valorRotacionSlidey*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943))  #Se modifica la matriz del tornillo
       self.matriztornillo1.SetElement(1,1,(math.cos(self.valorRotacionSlidex*0.017453292519943)*math.cos(self.valorRotacionSlidez*0.017453292519943))-(math.sin(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidey*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943)) )
-      self.matriztornillo1.SetElement(1,2,(math.sin(self.valorRotacionSlidez*0.017453292519943)*math.sin(self.valorRotacionSlidex*0.017453292519943))+(math.cos(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidey*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943)) )
+      self.matriztornillo1.SetElement(1,2,(math.cos(self.valorRotacionSlidez*0.017453292519943)*math.sin(self.valorRotacionSlidex*0.017453292519943))+(math.cos(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidey*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943)) )
 
       self.matriztornillo1.SetElement(2,0,math.sin(self.valorRotacionSlidey*0.017453292519943))  #Se modifica la matriz del tornillo
       self.matriztornillo1.SetElement(2,1,-math.sin(self.valorRotacionSlidex*0.017453292519943)*math.cos(self.valorRotacionSlidey*0.017453292519943)) 
       self.matriztornillo1.SetElement(2,2,math.cos(self.valorRotacionSlidex*0.017453292519943)*math.cos(self.valorRotacionSlidey*0.017453292519943))
-
       self.transformada.SetAndObserveMatrixTransformToParent(self.matriztornillo1) # Se añade la matriz del tornillo modificada a la matriz padre de movimientos
 
     else:
       
-      self.transformada2.GetMatrixTransformToParent(self.matriztornillo2) 
-       #Se toma la matriz padre de movimiento
-      self.matriztornillo1.SetElement(0,0,math.cos(valorRotacionSlidey*0.017453292519943)*math.cos(valorRotacionSlidex*0.017453292519943))  #Se modifica la matriz del tornillo
-      self.matriztornillo1.SetElement(0,1,math.cos(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidex*0.017453292519943)+math.sin(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidey*0.017453292519943)*math.cos(valorRotacionSlidex*0.017453292519943)) 
-      self.matriztornillo1.SetElement(0,2,math.sin(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidex*0.017453292519943)-math.cos(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidey*0.017453292519943)*math.cos(valorRotacionSlidex*0.017453292519943)) 
+      self.transformada2.GetMatrixTransformToParent(self.matriztornillo2)  #Se toma la matriz padre de movimiento
+     
+      self.matriztornillo2.SetElement(0,0,math.cos(self.valorRotacionSlidey*0.017453292519943)*math.cos(self.valorRotacionSlidez*0.017453292519943))  #Se modifica la matriz del tornillo
+      self.matriztornillo2.SetElement(0,1,(math.cos(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943))+(math.sin(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidey*0.017453292519943)*math.cos(self.valorRotacionSlidez*0.017453292519943)) )
+      self.matriztornillo2.SetElement(0,2,(math.sin(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943))-(math.cos(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidey*0.017453292519943)*math.cos(self.valorRotacionSlidez*0.017453292519943)) )
 
-      self.matriztornillo1.SetElement(1,0,-math.cos(valorRotacionSlidey*0.017453292519943)*math.sin(valorRotacionSlidex*0.017453292519943))  #Se modifica la matriz del tornillo
-      self.matriztornillo1.SetElement(1,1,math.cos(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidex*0.017453292519943)-math.sin(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidey*0.017453292519943)*math.cos(valorRotacionSlidex*0.017453292519943)) 
-      self.matriztornillo1.SetElement(1,2,math.sin(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidex*0.017453292519943)-math.cos(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidey*0.017453292519943)*math.cos(valorRotacionSlidex*0.017453292519943)) 
+      self.matriztornillo2.SetElement(1,0,-math.cos(self.valorRotacionSlidey*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943))  #Se modifica la matriz del tornillo
+      self.matriztornillo2.SetElement(1,1,(math.cos(self.valorRotacionSlidex*0.017453292519943)*math.cos(self.valorRotacionSlidez*0.017453292519943))-(math.sin(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidey*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943)) )
+      self.matriztornillo2.SetElement(1,2,(math.cos(self.valorRotacionSlidez*0.017453292519943)*math.sin(self.valorRotacionSlidex*0.017453292519943))+(math.cos(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidey*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943)) )
 
-      self.matriztornillo1.SetElement(2,0,math.sin(valorRotacionSlidey*0.017453292519943))  #Se modifica la matriz del tornillo
-      self.matriztornillo1.SetElement(2,1,-math.sin(valorRotacionSlidez*0.017453292519943)*math.cos(valorRotacionSlidey*0.017453292519943)) 
-      self.matriztornillo1.SetElement(2,2,math.cos(valorRotacionSlidex*0.017453292519943)*math.cos(valorRotacionSlidez*0.017453292519943)) 
-        
+      self.matriztornillo2.SetElement(2,0,math.sin(self.valorRotacionSlidey*0.017453292519943))  #Se modifica la matriz del tornillo
+      self.matriztornillo2.SetElement(2,1,-math.sin(self.valorRotacionSlidex*0.017453292519943)*math.cos(self.valorRotacionSlidey*0.017453292519943)) 
+      self.matriztornillo2.SetElement(2,2,math.cos(self.valorRotacionSlidex*0.017453292519943)*math.cos(self.valorRotacionSlidey*0.017453292519943))
+
       self.transformada2.SetAndObserveMatrixTransformToParent(self.matriztornillo2)
 
   def onMoveRotacionYspinBox(self):
@@ -489,43 +487,42 @@ class moduloTarea1Widget:
 
       self.transformada.GetMatrixTransformToParent(self.matriztornillo1)  #Se toma la matriz padre de movimiento
      
-      self.matriztornillo1.SetElement(0,0,math.cos(valorRotacionSlidey*0.017453292519943)*math.cos(valorRotacionSlidex*0.017453292519943))  #Se modifica la matriz del tornillo
-      self.matriztornillo1.SetElement(0,1,math.cos(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidex*0.017453292519943)+math.sin(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidey*0.017453292519943)*math.cos(valorRotacionSlidex*0.017453292519943)) 
-      self.matriztornillo1.SetElement(0,2,math.sin(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidex*0.017453292519943)-math.cos(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidey*0.017453292519943)*math.cos(valorRotacionSlidex*0.017453292519943)) 
+      self.matriztornillo1.SetElement(0,0,math.cos(self.valorRotacionSlidey*0.017453292519943)*math.cos(self.valorRotacionSlidez*0.017453292519943))  #Se modifica la matriz del tornillo
+      self.matriztornillo1.SetElement(0,1,(math.cos(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943))+(math.sin(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidey*0.017453292519943)*math.cos(self.valorRotacionSlidez*0.017453292519943)) )
+      self.matriztornillo1.SetElement(0,2,(math.sin(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943))-(math.cos(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidey*0.017453292519943)*math.cos(self.valorRotacionSlidez*0.017453292519943)) )
 
-      self.matriztornillo1.SetElement(1,0,-math.cos(valorRotacionSlidey*0.017453292519943)*math.sin(valorRotacionSlidex*0.017453292519943))  #Se modifica la matriz del tornillo
-      self.matriztornillo1.SetElement(1,1,math.cos(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidex*0.017453292519943)-math.sin(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidey*0.017453292519943)*math.cos(valorRotacionSlidex*0.017453292519943)) 
-      self.matriztornillo1.SetElement(1,2,math.sin(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidex*0.017453292519943)-math.cos(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidey*0.017453292519943)*math.cos(valorRotacionSlidex*0.017453292519943)) 
+      self.matriztornillo1.SetElement(1,0,-math.cos(self.valorRotacionSlidey*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943))  #Se modifica la matriz del tornillo
+      self.matriztornillo1.SetElement(1,1,(math.cos(self.valorRotacionSlidex*0.017453292519943)*math.cos(self.valorRotacionSlidez*0.017453292519943))-(math.sin(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidey*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943)) )
+      self.matriztornillo1.SetElement(1,2,(math.cos(self.valorRotacionSlidez*0.017453292519943)*math.sin(self.valorRotacionSlidex*0.017453292519943))+(math.cos(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidey*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943)) )
 
-      self.matriztornillo1.SetElement(2,0,math.sin(valorRotacionSlidey*0.017453292519943))  #Se modifica la matriz del tornillo
-      self.matriztornillo1.SetElement(2,1,-math.sin(valorRotacionSlidez*0.017453292519943)*math.cos(valorRotacionSlidey*0.017453292519943)) 
-      self.matriztornillo1.SetElement(2,2,math.cos(valorRotacionSlidex*0.017453292519943)*math.cos(valorRotacionSlidez*0.017453292519943))  
-
+      self.matriztornillo1.SetElement(2,0,math.sin(self.valorRotacionSlidey*0.017453292519943))  #Se modifica la matriz del tornillo
+      self.matriztornillo1.SetElement(2,1,-math.sin(self.valorRotacionSlidex*0.017453292519943)*math.cos(self.valorRotacionSlidey*0.017453292519943)) 
+      self.matriztornillo1.SetElement(2,2,math.cos(self.valorRotacionSlidex*0.017453292519943)*math.cos(self.valorRotacionSlidey*0.017453292519943))
       self.transformada.SetAndObserveMatrixTransformToParent(self.matriztornillo1) # Se añade la matriz del tornillo modificada a la matriz padre de movimientos
 
     else:
       
-      self.transformada2.GetMatrixTransformToParent(self.matriztornillo2) 
-       #Se toma la matriz padre de movimiento
-      self.matriztornillo1.SetElement(0,0,math.cos(valorRotacionSlidey*0.017453292519943)*math.cos(valorRotacionSlidex*0.017453292519943))  #Se modifica la matriz del tornillo
-      self.matriztornillo1.SetElement(0,1,math.cos(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidex*0.017453292519943)+math.sin(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidey*0.017453292519943)*math.cos(valorRotacionSlidex*0.017453292519943)) 
-      self.matriztornillo1.SetElement(0,2,math.sin(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidex*0.017453292519943)-math.cos(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidey*0.017453292519943)*math.cos(valorRotacionSlidex*0.017453292519943)) 
+      self.transformada2.GetMatrixTransformToParent(self.matriztornillo2)  #Se toma la matriz padre de movimiento
+     
+      self.matriztornillo2.SetElement(0,0,math.cos(self.valorRotacionSlidey*0.017453292519943)*math.cos(self.valorRotacionSlidez*0.017453292519943))  #Se modifica la matriz del tornillo
+      self.matriztornillo2.SetElement(0,1,(math.cos(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943))+(math.sin(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidey*0.017453292519943)*math.cos(self.valorRotacionSlidez*0.017453292519943)) )
+      self.matriztornillo2.SetElement(0,2,(math.sin(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943))-(math.cos(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidey*0.017453292519943)*math.cos(self.valorRotacionSlidez*0.017453292519943)) )
 
-      self.matriztornillo1.SetElement(1,0,-math.cos(valorRotacionSlidey*0.017453292519943)*math.sin(valorRotacionSlidex*0.017453292519943))  #Se modifica la matriz del tornillo
-      self.matriztornillo1.SetElement(1,1,math.cos(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidex*0.017453292519943)-math.sin(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidey*0.017453292519943)*math.cos(valorRotacionSlidex*0.017453292519943)) 
-      self.matriztornillo1.SetElement(1,2,math.sin(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidex*0.017453292519943)-math.cos(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidey*0.017453292519943)*math.cos(valorRotacionSlidex*0.017453292519943)) 
+      self.matriztornillo2.SetElement(1,0,-math.cos(self.valorRotacionSlidey*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943))  #Se modifica la matriz del tornillo
+      self.matriztornillo2.SetElement(1,1,(math.cos(self.valorRotacionSlidex*0.017453292519943)*math.cos(self.valorRotacionSlidez*0.017453292519943))-(math.sin(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidey*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943)) )
+      self.matriztornillo2.SetElement(1,2,(math.cos(self.valorRotacionSlidez*0.017453292519943)*math.sin(self.valorRotacionSlidex*0.017453292519943))+(math.cos(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidey*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943)) )
 
-      self.matriztornillo1.SetElement(2,0,math.sin(valorRotacionSlidey*0.017453292519943))  #Se modifica la matriz del tornillo
-      self.matriztornillo1.SetElement(2,1,-math.sin(valorRotacionSlidez*0.017453292519943)*math.cos(valorRotacionSlidey*0.017453292519943)) 
-      self.matriztornillo1.SetElement(2,2,math.cos(valorRotacionSlidex*0.017453292519943)*math.cos(valorRotacionSlidez*0.017453292519943)) 
-        
+      self.matriztornillo2.SetElement(2,0,math.sin(self.valorRotacionSlidey*0.017453292519943))  #Se modifica la matriz del tornillo
+      self.matriztornillo2.SetElement(2,1,-math.sin(self.valorRotacionSlidex*0.017453292519943)*math.cos(self.valorRotacionSlidey*0.017453292519943)) 
+      self.matriztornillo2.SetElement(2,2,math.cos(self.valorRotacionSlidex*0.017453292519943)*math.cos(self.valorRotacionSlidey*0.017453292519943))
+
       self.transformada2.SetAndObserveMatrixTransformToParent(self.matriztornillo2)
 
   def onMoveRotacionZ(self):
     self.valorRotacionSlidex=self.barraRotacionX.value  #Se obtiene el valor del slide modificado
     self.valorRotacionSlidey=self.barraRotacionY.value
     self.valorRotacionSlidez=self.barraRotacionZ.value
-    #self.spinBoxRotacionZ.setValue(self.valorRotacionSlidez)
+    self.spinBoxRotacionZ.setValue(self.valorRotacionSlidez)
 
     if self.comboBoxSeleccionTornillo.currentIndex == 0:
 
@@ -537,29 +534,29 @@ class moduloTarea1Widget:
 
       self.matriztornillo1.SetElement(1,0,-math.cos(self.valorRotacionSlidey*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943))  #Se modifica la matriz del tornillo
       self.matriztornillo1.SetElement(1,1,(math.cos(self.valorRotacionSlidex*0.017453292519943)*math.cos(self.valorRotacionSlidez*0.017453292519943))-(math.sin(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidey*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943)) )
-      self.matriztornillo1.SetElement(1,2,(math.sin(self.valorRotacionSlidez*0.017453292519943)*math.sin(self.valorRotacionSlidex*0.017453292519943))+(math.cos(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidey*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943)) )
+      self.matriztornillo1.SetElement(1,2,(math.cos(self.valorRotacionSlidez*0.017453292519943)*math.sin(self.valorRotacionSlidex*0.017453292519943))+(math.cos(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidey*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943)) )
 
       self.matriztornillo1.SetElement(2,0,math.sin(self.valorRotacionSlidey*0.017453292519943))  #Se modifica la matriz del tornillo
       self.matriztornillo1.SetElement(2,1,-math.sin(self.valorRotacionSlidex*0.017453292519943)*math.cos(self.valorRotacionSlidey*0.017453292519943)) 
       self.matriztornillo1.SetElement(2,2,math.cos(self.valorRotacionSlidex*0.017453292519943)*math.cos(self.valorRotacionSlidey*0.017453292519943))
-      self.transformada.SetAndObserveMatrixTransformToParent(self.matriztornillo1) # Se añade la matriz del tornillo modificada a la matriz padre de movimientos
+      self.transformada.SetAndObserveMatrixTransformToParent(self.matriztornillo1)
 
     else:
       
-      self.transformada2.GetMatrixTransformToParent(self.matriztornillo2) 
-       #Se toma la matriz padre de movimiento
-      self.matriztornillo1.SetElement(0,0,math.cos(valorRotacionSlidey*0.017453292519943)*math.cos(valorRotacionSlidex*0.017453292519943))  #Se modifica la matriz del tornillo
-      self.matriztornillo1.SetElement(0,1,math.cos(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidex*0.017453292519943)+math.sin(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidey*0.017453292519943)*math.cos(valorRotacionSlidex*0.017453292519943)) 
-      self.matriztornillo1.SetElement(0,2,math.sin(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidex*0.017453292519943)-math.cos(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidey*0.017453292519943)*math.cos(valorRotacionSlidex*0.017453292519943)) 
+      self.transformada2.GetMatrixTransformToParent(self.matriztornillo2)  #Se toma la matriz padre de movimiento
+     
+      self.matriztornillo2.SetElement(0,0,math.cos(self.valorRotacionSlidey*0.017453292519943)*math.cos(self.valorRotacionSlidez*0.017453292519943))  #Se modifica la matriz del tornillo
+      self.matriztornillo2.SetElement(0,1,(math.cos(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943))+(math.sin(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidey*0.017453292519943)*math.cos(self.valorRotacionSlidez*0.017453292519943)) )
+      self.matriztornillo2.SetElement(0,2,(math.sin(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943))-(math.cos(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidey*0.017453292519943)*math.cos(self.valorRotacionSlidez*0.017453292519943)) )
 
-      self.matriztornillo1.SetElement(1,0,-math.cos(valorRotacionSlidey*0.017453292519943)*math.sin(valorRotacionSlidex*0.017453292519943))  #Se modifica la matriz del tornillo
-      self.matriztornillo1.SetElement(1,1,math.cos(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidex*0.017453292519943)-math.sin(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidey*0.017453292519943)*math.cos(valorRotacionSlidex*0.017453292519943)) 
-      self.matriztornillo1.SetElement(1,2,math.sin(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidex*0.017453292519943)-math.cos(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidey*0.017453292519943)*math.cos(valorRotacionSlidex*0.017453292519943)) 
+      self.matriztornillo2.SetElement(1,0,-math.cos(self.valorRotacionSlidey*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943))  #Se modifica la matriz del tornillo
+      self.matriztornillo2.SetElement(1,1,(math.cos(self.valorRotacionSlidex*0.017453292519943)*math.cos(self.valorRotacionSlidez*0.017453292519943))-(math.sin(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidey*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943)) )
+      self.matriztornillo2.SetElement(1,2,(math.cos(self.valorRotacionSlidez*0.017453292519943)*math.sin(self.valorRotacionSlidex*0.017453292519943))+(math.cos(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidey*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943)) )
 
-      self.matriztornillo1.SetElement(2,0,math.sin(valorRotacionSlidey*0.017453292519943))  #Se modifica la matriz del tornillo
-      self.matriztornillo1.SetElement(2,1,-math.sin(valorRotacionSlidez*0.017453292519943)*math.cos(valorRotacionSlidey*0.017453292519943)) 
-      self.matriztornillo1.SetElement(2,2,math.cos(valorRotacionSlidex*0.017453292519943)*math.cos(valorRotacionSlidez*0.017453292519943)) 
-        
+      self.matriztornillo2.SetElement(2,0,math.sin(self.valorRotacionSlidey*0.017453292519943))  #Se modifica la matriz del tornillo
+      self.matriztornillo2.SetElement(2,1,-math.sin(self.valorRotacionSlidex*0.017453292519943)*math.cos(self.valorRotacionSlidey*0.017453292519943)) 
+      self.matriztornillo2.SetElement(2,2,math.cos(self.valorRotacionSlidex*0.017453292519943)*math.cos(self.valorRotacionSlidey*0.017453292519943))
+
       self.transformada2.SetAndObserveMatrixTransformToParent(self.matriztornillo2)
 
   def onMoveRotacionZspinBox(self):
@@ -570,36 +567,36 @@ class moduloTarea1Widget:
 
       self.transformada.GetMatrixTransformToParent(self.matriztornillo1)  #Se toma la matriz padre de movimiento
      
-      self.matriztornillo1.SetElement(0,0,math.cos(valorRotacionSlidey*0.017453292519943)*math.cos(valorRotacionSlidex*0.017453292519943))  #Se modifica la matriz del tornillo
-      self.matriztornillo1.SetElement(0,1,math.cos(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidex*0.017453292519943)+math.sin(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidey*0.017453292519943)*math.cos(valorRotacionSlidex*0.017453292519943)) 
-      self.matriztornillo1.SetElement(0,2,math.sin(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidex*0.017453292519943)-math.cos(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidey*0.017453292519943)*math.cos(valorRotacionSlidex*0.017453292519943)) 
+      self.matriztornillo1.SetElement(0,0,math.cos(self.valorRotacionSlidey*0.017453292519943)*math.cos(self.valorRotacionSlidez*0.017453292519943))  #Se modifica la matriz del tornillo
+      self.matriztornillo1.SetElement(0,1,(math.cos(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943))+(math.sin(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidey*0.017453292519943)*math.cos(self.valorRotacionSlidez*0.017453292519943)) )
+      self.matriztornillo1.SetElement(0,2,(math.sin(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943))-(math.cos(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidey*0.017453292519943)*math.cos(self.valorRotacionSlidez*0.017453292519943)) )
 
-      self.matriztornillo1.SetElement(1,0,-math.cos(valorRotacionSlidey*0.017453292519943)*math.sin(valorRotacionSlidex*0.017453292519943))  #Se modifica la matriz del tornillo
-      self.matriztornillo1.SetElement(1,1,math.cos(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidex*0.017453292519943)-math.sin(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidey*0.017453292519943)*math.cos(valorRotacionSlidex*0.017453292519943)) 
-      self.matriztornillo1.SetElement(1,2,math.sin(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidex*0.017453292519943)-math.cos(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidey*0.017453292519943)*math.cos(valorRotacionSlidex*0.017453292519943)) 
+      self.matriztornillo1.SetElement(1,0,-math.cos(self.valorRotacionSlidey*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943))  #Se modifica la matriz del tornillo
+      self.matriztornillo1.SetElement(1,1,(math.cos(self.valorRotacionSlidex*0.017453292519943)*math.cos(self.valorRotacionSlidez*0.017453292519943))-(math.sin(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidey*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943)) )
+      self.matriztornillo1.SetElement(1,2,(math.cos(self.valorRotacionSlidez*0.017453292519943)*math.sin(self.valorRotacionSlidex*0.017453292519943))+(math.cos(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidey*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943)) )
 
-      self.matriztornillo1.SetElement(2,0,math.sin(valorRotacionSlidey*0.017453292519943))  #Se modifica la matriz del tornillo
-      self.matriztornillo1.SetElement(2,1,-math.sin(valorRotacionSlidez*0.017453292519943)*math.cos(valorRotacionSlidey*0.017453292519943)) 
-      self.matriztornillo1.SetElement(2,2,math.cos(valorRotacionSlidex*0.017453292519943)*math.cos(valorRotacionSlidez*0.017453292519943))  
+      self.matriztornillo1.SetElement(2,0,math.sin(self.valorRotacionSlidey*0.017453292519943))  #Se modifica la matriz del tornillo
+      self.matriztornillo1.SetElement(2,1,-math.sin(self.valorRotacionSlidex*0.017453292519943)*math.cos(self.valorRotacionSlidey*0.017453292519943)) 
+      self.matriztornillo1.SetElement(2,2,math.cos(self.valorRotacionSlidex*0.017453292519943)*math.cos(self.valorRotacionSlidey*0.017453292519943))
 
       self.transformada.SetAndObserveMatrixTransformToParent(self.matriztornillo1) # Se añade la matriz del tornillo modificada a la matriz padre de movimientos
 
     else:
       
-      self.transformada2.GetMatrixTransformToParent(self.matriztornillo2) 
-       #Se toma la matriz padre de movimiento
-      self.matriztornillo1.SetElement(0,0,math.cos(valorRotacionSlidey*0.017453292519943)*math.cos(valorRotacionSlidex*0.017453292519943))  #Se modifica la matriz del tornillo
-      self.matriztornillo1.SetElement(0,1,math.cos(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidex*0.017453292519943)+math.sin(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidey*0.017453292519943)*math.cos(valorRotacionSlidex*0.017453292519943)) 
-      self.matriztornillo1.SetElement(0,2,math.sin(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidex*0.017453292519943)-math.cos(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidey*0.017453292519943)*math.cos(valorRotacionSlidex*0.017453292519943)) 
+      self.transformada2.GetMatrixTransformToParent(self.matriztornillo2)  #Se toma la matriz padre de movimiento
+     
+      self.matriztornillo2.SetElement(0,0,math.cos(self.valorRotacionSlidey*0.017453292519943)*math.cos(self.valorRotacionSlidez*0.017453292519943))  #Se modifica la matriz del tornillo
+      self.matriztornillo2.SetElement(0,1,(math.cos(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943))+(math.sin(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidey*0.017453292519943)*math.cos(self.valorRotacionSlidez*0.017453292519943)) )
+      self.matriztornillo2.SetElement(0,2,(math.sin(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943))-(math.cos(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidey*0.017453292519943)*math.cos(self.valorRotacionSlidez*0.017453292519943)) )
 
-      self.matriztornillo1.SetElement(1,0,-math.cos(valorRotacionSlidey*0.017453292519943)*math.sin(valorRotacionSlidex*0.017453292519943))  #Se modifica la matriz del tornillo
-      self.matriztornillo1.SetElement(1,1,math.cos(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidex*0.017453292519943)-math.sin(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidey*0.017453292519943)*math.cos(valorRotacionSlidex*0.017453292519943)) 
-      self.matriztornillo1.SetElement(1,2,math.sin(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidex*0.017453292519943)-math.cos(valorRotacionSlidez*0.017453292519943)*math.sin(valorRotacionSlidey*0.017453292519943)*math.cos(valorRotacionSlidex*0.017453292519943)) 
+      self.matriztornillo2.SetElement(1,0,-math.cos(self.valorRotacionSlidey*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943))  #Se modifica la matriz del tornillo
+      self.matriztornillo2.SetElement(1,1,(math.cos(self.valorRotacionSlidex*0.017453292519943)*math.cos(self.valorRotacionSlidez*0.017453292519943))-(math.sin(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidey*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943)) )
+      self.matriztornillo2.SetElement(1,2,(math.cos(self.valorRotacionSlidez*0.017453292519943)*math.sin(self.valorRotacionSlidex*0.017453292519943))+(math.cos(self.valorRotacionSlidex*0.017453292519943)*math.sin(self.valorRotacionSlidey*0.017453292519943)*math.sin(self.valorRotacionSlidez*0.017453292519943)) )
 
-      self.matriztornillo1.SetElement(2,0,math.sin(valorRotacionSlidey*0.017453292519943))  #Se modifica la matriz del tornillo
-      self.matriztornillo1.SetElement(2,1,-math.sin(valorRotacionSlidez*0.017453292519943)*math.cos(valorRotacionSlidey*0.017453292519943)) 
-      self.matriztornillo1.SetElement(2,2,math.cos(valorRotacionSlidex*0.017453292519943)*math.cos(valorRotacionSlidez*0.017453292519943)) 
-        
+      self.matriztornillo2.SetElement(2,0,math.sin(self.valorRotacionSlidey*0.017453292519943))  #Se modifica la matriz del tornillo
+      self.matriztornillo2.SetElement(2,1,-math.sin(self.valorRotacionSlidex*0.017453292519943)*math.cos(self.valorRotacionSlidey*0.017453292519943)) 
+      self.matriztornillo2.SetElement(2,2,math.cos(self.valorRotacionSlidex*0.017453292519943)*math.cos(self.valorRotacionSlidey*0.017453292519943))
+
       self.transformada2.SetAndObserveMatrixTransformToParent(self.matriztornillo2)
 
   def onMoveComboBox(self):
