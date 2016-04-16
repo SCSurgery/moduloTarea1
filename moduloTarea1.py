@@ -64,10 +64,20 @@ class moduloTarea1Widget:
     self.layout.addWidget(sample1CollapsibleButton) #Se crea layout dentro del boton colapsable
 
     #---------------------------------------------------------------------------------------------------
+    sample2FormLayout = qt.QFormLayout(sample2CollapsibleButton) #Se anada QformLayout al boton colapsable
 
-   
+    labelSeleccionTrayectoria = qt.QLabel("Seleccione trayectoria a planear: ") #Se crea label para seleccion de tornillo a manipular
+    sample2FormLayout.addWidget(labelSeleccionTrayectoria) #Se añade label
+ 
+    self.comboBoxSeleccionTrayectoria = qt.QComboBox() #Se crea comboBox para seleccionar tornillo
+    self.comboBoxSeleccionTrayectoria.addItem("Trayectoria 1") #Se añade opciones
+    self.comboBoxSeleccionTrayectoria.addItem("Trayectoria 2")
+    sample2FormLayout.addWidget(self.comboBoxSeleccionTrayectoria) #Se añade al layout
+    
+
+#-----------------------------------------------------------------------------------------------------------------
     #Click boton "Cargar tornillo"
-    sample2FormLayout = qt.QFormLayout(sample2CollapsibleButton)
+    
 
     layout3Button = qt.QPushButton("Inicio trayectoria") #Se crea boton pulsable, con texto "Apply"
     layout3Button.toolTip = "Al presionar aparecerá un tornillo en la scena" #Información que aparece si dejas el mouse encima
@@ -113,7 +123,8 @@ class moduloTarea1Widget:
     self.comboBoxSeleccionTornillo.addItem("Tornillo 2")
     sample1FormLayout.addWidget(self.comboBoxSeleccionTornillo) #Se añade al layout
     self.comboBoxSeleccionTornillo.currentIndexChanged.connect(self.onMoveComboBox)
-   
+#------------------------------------------------------------------------------------------------
+
     groupBoxTraslation = qt.QGroupBox() #Se crea un group box dentro del boton colapsable
     groupBoxTraslation.setTitle( 'Traslacion' ) #Se anade nombre al groupBox
     sample1FormLayout.addWidget(groupBoxTraslation) #Se añade el groupbox al layout del boton
@@ -124,6 +135,7 @@ class moduloTarea1Widget:
     groupBoxTraslationLayoutContenedor1.setLayout(qt.QHBoxLayout())
     groupBoxTraslationLayout.layout().addWidget(groupBoxTraslationLayoutContenedor1)
 
+#------------------------------------------------------------------------------------------------------------
     labelEjex = qt.QLabel("Traslacion eje RL: ") #Se crea label
     groupBoxTraslationLayoutContenedor1.layout().addWidget(labelEjex) #Se añade label al layout
 
@@ -317,15 +329,28 @@ class moduloTarea1Widget:
 
   def onApply5(self):
     print "Inicio trayectoria"
-    markups=slicer.util.getNode('F')
-    centerPointCoord1 = [0.0, 0.0, 0.0]
-    centerPointCoord2 = [0.0, 0.0, 0.0]
-    markups.GetNthFiducialPosition(0,centerPointCoord1)
-    markups.GetNthFiducialPosition(1,centerPointCoord2)
-    self.ruler = slicer.vtkMRMLAnnotationRulerNode()
-    slicer.mrmlScene.AddNode(self.ruler)
-    self.ruler.SetPosition1(centerPointCoord1)
-    self.ruler.SetPosition2(centerPointCoord2)
+    if self.comboBoxSeleccionTrayectoria.currentIndex == 0:
+     markups=slicer.util.getNode('F')
+     centerPointCoord1 = [0.0, 0.0, 0.0]
+     centerPointCoord2 = [0.0, 0.0, 0.0]
+     markups.GetNthFiducialPosition(0,centerPointCoord1)
+     markups.GetNthFiducialPosition(1,centerPointCoord2)
+     self.ruler = slicer.vtkMRMLAnnotationRulerNode()
+     slicer.mrmlScene.AddNode(self.ruler)
+     self.ruler.SetPosition1(centerPointCoord1)
+     self.ruler.SetPosition2(centerPointCoord2)
+
+    else:
+
+     markups=slicer.util.getNode('F')
+     centerPointCoord2 = [0.0, 0.0, 0.0]
+     centerPointCoord3 = [0.0, 0.0, 0.0]
+     markups.GetNthFiducialPosition(2,centerPointCoord2)
+     markups.GetNthFiducialPosition(3,centerPointCoord3)
+     self.ruler2 = slicer.vtkMRMLAnnotationRulerNode()
+     slicer.mrmlScene.AddNode(self.ruler2)
+     self.ruler2.SetPosition1(centerPointCoord2)
+     self.ruler2.SetPosition2(centerPointCoord3)
 
 
   def onApply6(self):
@@ -335,6 +360,9 @@ class moduloTarea1Widget:
    markups.RemoveAllMarkups()
    self.ruler.SetPosition1(0,0,0)
    self.ruler.SetPosition2(0,0,0)
+   self.ruler2.SetPosition1(0,0,0)
+   self.ruler2.SetPosition2(0,0,0)
+
 
   def onMoveTraslacionX(self):
 
