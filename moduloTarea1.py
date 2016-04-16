@@ -35,14 +35,20 @@ class moduloTarea1Widget:
     #Path para camilo= C:\Users\Camilo_Q\Documents\GitHub\moduloTarea1/Tornillo_1.STL
     #Path para Nicolas = ...
 
-    print math.sin(45*0.017453292519943)
-
     path1='C:\Users\Camilo_Q\Documents\GitHub\moduloTarea1/stlcolumna.stl' #Se obtiene direccion de la unbicación del tornillo
     slicer.util.loadModel(path1)
     layoutManager = slicer.app.layoutManager() 
     threeDWidget = layoutManager.threeDWidget(0)
     threeDView = threeDWidget.threeDView()
     threeDView.resetFocalPoint()
+
+    layoutManager.setLayout(9)
+  
+    sample2CollapsibleButton = ctk.ctkCollapsibleButton() #Se crea boton colapsable
+    sample2CollapsibleButton.text = "Planear trayectoria" #Se asigna label del boton colapsable
+    sample2CollapsibleButton.collapsed = False #Aparecen sin colapsar
+    self.layout.addWidget(sample2CollapsibleButton) #Se crea layout dentro del boton colapsable
+
 #---------------------------------------------------------------------------------------------------
 
     sampleCollapsibleButton = ctk.ctkCollapsibleButton() #Se crea boton colapsable
@@ -57,8 +63,23 @@ class moduloTarea1Widget:
     sample1CollapsibleButton.collapsed = False #Aparecen sin colapsar
     self.layout.addWidget(sample1CollapsibleButton) #Se crea layout dentro del boton colapsable
 
-#------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+
+   
     #Click boton "Cargar tornillo"
+    sample2FormLayout = qt.QFormLayout(sample2CollapsibleButton)
+
+    layout2Button = qt.QPushButton("Inicio trayectoria") #Se crea boton pulsable, con texto "Apply"
+    layout2Button.toolTip = "Al presionar aparecerá un tornillo en la scena" #Información que aparece si dejas el mouse encima
+    sample2FormLayout.addWidget(layout2Button) #Se añade el boton al layout del boton colapsable
+    layout2Button.connect('clicked(bool)',self.onApply3)
+
+    layout2Button = qt.QPushButton("Fin trayectoria") #Se crea boton pulsable, con texto "Apply"
+    layout2Button.toolTip = "Al presionar aparecerá un tornillo en la scena" #Información que aparece si dejas el mouse encima
+    sample2FormLayout.addWidget(layout2Button) #Se añade el boton al layout del boton colapsable
+    layout2Button.connect('clicked(bool)',self.onApply4)
+
+#--------------------------------------------------------------------------------------------------
     sampleFormLayout = qt.QFormLayout(sampleCollapsibleButton)
 
     layout1Button = qt.QPushButton("Cargar tornillo 1") #Se crea boton pulsable, con texto "Apply"
@@ -274,6 +295,17 @@ class moduloTarea1Widget:
       self.matriztornillo2.SetElement(0,3,50) #Se modifica la matriz del tornillo
       self.transformada2.SetAndObserveMatrixTransformToParent(self.matriztornillo2) # Se añade la matriz del tornillo modificada a la matriz padre de movimientos
 
+  def onApply3(self):
+    print "Inicio trayectoria"
+    placeModePersistence = 0
+    a=slicer.modules.markups.logic().StartPlaceMode(placeModePersistence)
+
+  def onApply4(self):
+     
+    placeModePersistence = 0
+    b=slicer.modules.markups.logic().StartPlaceMode(placeModePersistence)
+    print "Fin de trayectoria" 
+
   def onMoveTraslacionX(self):
 
     valorTrasladoSlidex=self.barraTranslacionX.value  #Se obtiene el valor del slide modificado
@@ -324,7 +356,7 @@ class moduloTarea1Widget:
       self.transformada2.GetMatrixTransformToParent(self.matriztornillo2)  #Se toma la matriz padre de movimiento
       self.matriztornillo2.SetElement(2,3,valorTrasladoSlidez)  #Se modifica la matriz del tornillo
       self.transformada2.SetAndObserveMatrixTransformToParent(self.matriztornillo2)
-
+    
   def onMoveTraslacionXspinBox(self):
 
     valorTrasladoSlidex=self.spinBoxTraslacionX.value
@@ -373,6 +405,8 @@ class moduloTarea1Widget:
       self.transformada2.GetMatrixTransformToParent(self.matriztornillo2)  #Se toma la matriz padre de movimiento
       self.matriztornillo2.SetElement(2,3,valorTrasladoSlidez)  #Se modifica la matriz del tornillo
       self.transformada2.SetAndObserveMatrixTransformToParent(self.matriztornillo2)
+
+  
 
   def onMoveRotacionX(self):
 
@@ -681,8 +715,10 @@ class moduloTarea1Widget:
         self.barraRotacionY.setValue(0)
         self.barraRotacionZ.setValue(0)
 
-  def onMoveTraslacionEje(self):
-    print "Traslacion eje tornillo slide"
+
 
   def onMoveTraslacionEjespinBox(self):
     print "Traslacion eje tornillo spinBox"
+
+  def onMoveTraslacionEje(self):
+      print "Traslacion eje tornillo slide"
