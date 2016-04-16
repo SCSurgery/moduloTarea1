@@ -69,16 +69,25 @@ class moduloTarea1Widget:
     #Click boton "Cargar tornillo"
     sample2FormLayout = qt.QFormLayout(sample2CollapsibleButton)
 
-    layout2Button = qt.QPushButton("Inicio trayectoria") #Se crea boton pulsable, con texto "Apply"
-    layout2Button.toolTip = "Al presionar aparecerá un tornillo en la scena" #Información que aparece si dejas el mouse encima
-    sample2FormLayout.addWidget(layout2Button) #Se añade el boton al layout del boton colapsable
-    layout2Button.connect('clicked(bool)',self.onApply3)
+    layout3Button = qt.QPushButton("Inicio trayectoria") #Se crea boton pulsable, con texto "Apply"
+    layout3Button.toolTip = "Al presionar aparecerá un tornillo en la scena" #Información que aparece si dejas el mouse encima
+    sample2FormLayout.addWidget(layout3Button) #Se añade el boton al layout del boton colapsable
+    layout3Button.connect('clicked(bool)',self.onApply3)
 
-    layout2Button = qt.QPushButton("Fin trayectoria") #Se crea boton pulsable, con texto "Apply"
-    layout2Button.toolTip = "Al presionar aparecerá un tornillo en la scena" #Información que aparece si dejas el mouse encima
-    sample2FormLayout.addWidget(layout2Button) #Se añade el boton al layout del boton colapsable
-    layout2Button.connect('clicked(bool)',self.onApply4)
+    layout4Button = qt.QPushButton("Fin trayectoria") #Se crea boton pulsable, con texto "Apply"
+    layout4Button.toolTip = "Al presionar aparecerá un tornillo en la scena" #Información que aparece si dejas el mouse encima
+    sample2FormLayout.addWidget(layout4Button) #Se añade el boton al layout del boton colapsable
+    layout4Button.connect('clicked(bool)',self.onApply4)
 
+    layout5Button = qt.QPushButton("Crear trayectoria") #Se crea boton pulsable, con texto "Apply"
+    layout5Button.toolTip = "Al presionar aparecerá un tornillo en la scena" #Información que aparece si dejas el mouse encima
+    sample2FormLayout.addWidget(layout5Button) #Se añade el boton al layout del boton colapsable
+    layout5Button.connect('clicked(bool)',self.onApply5)
+
+    layout6Button = qt.QPushButton("Reiniciar trayectoria") #Se crea boton pulsable, con texto "Apply"
+    layout6Button.toolTip = "Al presionar aparecerá un tornillo en la scena" #Información que aparece si dejas el mouse encima
+    sample2FormLayout.addWidget(layout6Button) #Se añade el boton al layout del boton colapsable
+    layout6Button.connect('clicked(bool)',self.onApply6)
 #--------------------------------------------------------------------------------------------------
     sampleFormLayout = qt.QFormLayout(sampleCollapsibleButton)
 
@@ -298,13 +307,34 @@ class moduloTarea1Widget:
   def onApply3(self):
     print "Inicio trayectoria"
     placeModePersistence = 0
-    a=slicer.modules.markups.logic().StartPlaceMode(placeModePersistence)
+    slicer.modules.markups.logic().StartPlaceMode(placeModePersistence)
 
   def onApply4(self):
      
     placeModePersistence = 0
-    b=slicer.modules.markups.logic().StartPlaceMode(placeModePersistence)
+    slicer.modules.markups.logic().StartPlaceMode(placeModePersistence)
     print "Fin de trayectoria" 
+
+  def onApply5(self):
+    print "Inicio trayectoria"
+    markups=slicer.util.getNode('F')
+    centerPointCoord1 = [0.0, 0.0, 0.0]
+    centerPointCoord2 = [0.0, 0.0, 0.0]
+    markups.GetNthFiducialPosition(0,centerPointCoord1)
+    markups.GetNthFiducialPosition(1,centerPointCoord2)
+    self.ruler = slicer.vtkMRMLAnnotationRulerNode()
+    slicer.mrmlScene.AddNode(self.ruler)
+    self.ruler.SetPosition1(centerPointCoord1)
+    self.ruler.SetPosition2(centerPointCoord2)
+
+
+  def onApply6(self):
+
+   print "trayectoria reiniciada"
+   markups=slicer.util.getNode('F')
+   markups.RemoveAllMarkups()
+   self.ruler.SetPosition1(0,0,0)
+   self.ruler.SetPosition2(0,0,0)
 
   def onMoveTraslacionX(self):
 
